@@ -1,6 +1,6 @@
 {
   "name": "react-redux-local",
-  "version": "0.3.0",
+  "version": "0.0.0-semantically-released",
   "description": "",
   "main": "build/index.js",
   "engines": {
@@ -15,10 +15,12 @@
     "lint": "standard",
     "prettier": "prettier-standard 'src/**/*.js'",
     "postinstall": "npm run build",
-    "run-all": "npm-run-all --parallel coverage lint build"
+    "run-all": "npm-run-all --parallel coverage lint build",
+    "release": "semantic-release pre && npm publish && semantic-release post"
   },
   "pre-commit": [
-    "lint"
+    "lint",
+    "test"
   ],
   "keywords": [
     "react",
@@ -42,7 +44,8 @@
     "prettier-standard": "7.0.3",
     "prop-types": "15.6.0",
     "source-map-support": "0.5.0",
-    "standard": "10.0.3"
+    "standard": "10.0.3",
+    "semantic-release": "8.2.0"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",

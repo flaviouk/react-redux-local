@@ -13,3 +13,4 @@ scripts:
   - npm run
 after_success:
   - npm run report-coverage
+  - npm run release
