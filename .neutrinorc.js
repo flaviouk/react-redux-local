@@ -1,3 +1,4 @@
+let newVar = ['@neutrinojs/library', { name: 'Logger' }]
 module.exports = {
-  use: ['neutrino-preset-node']
+  use: ['neutrino-preset-component']
 }
