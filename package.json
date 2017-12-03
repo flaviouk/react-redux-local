@@ -1,0 +1,62 @@
+{
+  "name": "react-redux-local",
+  "version": "0.1.0",
+  "description": "",
+  "main": "build/index.js",
+  "engines": {
+    "node": "> 4",
+    "npm": "> 3"
+  },
+  "scripts": {
+    "build": "neutrino build",
+    "start": "neutrino start",
+    "lint": "standard",
+    "prettier": "prettier-standard 'src/**/*.js'",
+    "test": "jest",
+    "postinstall": "npm run build"
+  },
+  "pre-commit": [
+    "lint",
+    "prettier",
+    "test"
+  ],
+  "files": [
+    "build",
+    "src"
+  ],
+  "keywords": [
+    "react",
+    "redux",
+    "local",
+    "recompose"
+  ],
+  "author": "Flávio Carvalho <hi@imflavio.com> (https://imflavio.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "neutrino": "7.3.3",
+    "neutrino-preset-node": "7.3.3",
+    "react": "16.2.0",
+    "redux": "3.7.2"
+  },
+  "devDependencies": {
+    "jest": "21.2.1",
+    "pre-commit": "1.2.2",
+    "prettier-standard": "7.0.3",
+    "prop-types": "15.6.0",
+    "source-map-support": "0.5.0",
+    "standard": "10.0.3"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imflavio/react-redux-local.git"
+  },
+  "bugs": {
+    "url": "https://github.com/imflavio/react-redux-local/issues"
+  },
+  "homepage": "https://github.com/imflavio/react-redux-local#readme"
+}
