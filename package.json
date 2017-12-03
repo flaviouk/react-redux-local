@@ -1,6 +1,6 @@
 {
   "name": "react-redux-local",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "main": "build/index.js",
   "engines": {
@@ -15,7 +15,9 @@
     "test": "jest",
     "postinstall": "npm run build"
   },
-  "pre-commit": ["lint"],
+  "pre-commit": [
+    "lint"
+  ],
   "keywords": [
     "react",
     "redux",
