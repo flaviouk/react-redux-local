@@ -39,3 +39,4 @@ buck-out/
 *.keystore
 fastlane/report.xml
 fastlane/screenshots
+coverage

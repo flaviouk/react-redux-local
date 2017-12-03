@@ -9,10 +9,10 @@
   },
   "scripts": {
     "build": "neutrino build",
-    "start": "neutrino start",
+    "test": "neutrino test",
+    "coverage": "neutrino test --coverage",
     "lint": "standard",
     "prettier": "prettier-standard 'src/**/*.js'",
-    "test": "jest",
     "postinstall": "npm run build"
   },
   "pre-commit": [
@@ -29,11 +29,11 @@
   "dependencies": {
     "neutrino": "7.3.3",
     "neutrino-preset-component": "0.0.1",
+    "neutrino-preset-jest": "7.3.3",
     "react": "16.2.0",
     "redux": "3.7.2"
   },
   "devDependencies": {
-    "jest": "21.2.1",
     "pre-commit": "1.2.2",
     "prettier-standard": "7.0.3",
     "prop-types": "15.6.0",
