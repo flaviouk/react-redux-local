@@ -20,10 +20,6 @@
     "prettier",
     "test"
   ],
-  "files": [
-    "build",
-    "src"
-  ],
   "keywords": [
     "react",
     "redux",
