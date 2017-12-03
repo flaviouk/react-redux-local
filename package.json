@@ -13,7 +13,8 @@
     "coverage": "neutrino test --coverage",
     "lint": "standard",
     "prettier": "prettier-standard 'src/**/*.js'",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "run-all": "npm run test && npm run lint && npm run build"
   },
   "pre-commit": [
     "lint"
