@@ -35,7 +35,8 @@
     "neutrino-preset-component": "0.0.1",
     "neutrino-preset-jest": "7.3.3",
     "react": "16.2.0",
-    "redux": "3.7.2"
+    "redux": "3.7.2",
+    "redux-saga": "0.16.0"
   },
   "devDependencies": {
     "codecov": "3.0.0",
@@ -43,9 +44,9 @@
     "pre-commit": "1.2.2",
     "prettier-standard": "7.0.3",
     "prop-types": "15.6.0",
+    "semantic-release": "8.2.0",
     "source-map-support": "0.5.0",
-    "standard": "10.0.3",
-    "semantic-release": "8.2.0"
+    "standard": "10.0.3"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",
