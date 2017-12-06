@@ -44,7 +44,7 @@ class LocalReducer extends Component {
   }
 
   render () {
-    return this.props.children(this.state, this.boundActions)
+    return this.props.render(this.state, this.boundActions)
   }
 }
 

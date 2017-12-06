@@ -24,7 +24,6 @@ Adding a local reducer can be very verbose with libraries like [recompose](https
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Full Example](#example)
 - [Inspiration](#inspiration)
 - [Other Solutions](#other-solutions)
 - [Contributors](#contributors)
@@ -45,21 +44,33 @@ yarn add react-redux-local
 ## Usage
 
 ```
+import LocalReducer from 'react-redux-local'
+
 const actions = {
   doSomething: () => ({ type: 'SOMETHING' })
 }
 
-<LocalReducer reducer={reducer} actions={actions}>
-  {(state, actions) => {
-    // state = redux state
-    // actions = binded actions (no need to dispatch)
-  })}
-</LocalReducer>
+// https://github.com/redux-saga/redux-saga
+function * saga () {
+  yield takeEvery('SOMETHING', () => console.log('Action with type SOMETHING was triggered'))
+}
+
+// https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md#windowdevtoolsextensionconfig
+const devToolsOptions = {}
+
+const MyComponent = () => (
+  <LocalReducer
+    reducer={reducer}
+    actions={actions}
+    sagas={[saga]}
+    devToolsOptions={devToolsOptions}
+    render={(state, actions) => {
+      // state = redux state
+      // actions = binded actions (no need to dispatch)
+    }}
+  />
+)
 ```
-
-## Example
-
-// TODO
 
 ## Inspiration
 
