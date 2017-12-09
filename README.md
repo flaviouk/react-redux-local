@@ -64,9 +64,10 @@ const MyComponent = () => (
     actions={actions}
     sagas={[saga]}
     devToolsOptions={devToolsOptions}
-    render={(state, actions) => {
+    render={(state, actions, dispatch) => {
       // state = redux state
       // actions = binded actions (no need to dispatch)
+      // dispatch = optional dispatch function, if you need a more complex workflow
     }}
   />
 )
