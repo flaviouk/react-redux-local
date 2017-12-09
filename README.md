@@ -81,8 +81,9 @@ Michael Jackson - Never Write Another HoC
 
 ## Other Solutions
 
-I'm not aware of any, if you are please [make a pull request][prs] and add it
-here!
+[local-react-redux](https://github.com/HansDP/local-react-redux)
+[local-react-redux-saga](https://github.com/HansDP/local-react-redux-saga)
+[react-local-reducer](https://github.com/troch/react-local-reducer)
 
 ## Contributors
 
