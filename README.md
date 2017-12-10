@@ -62,8 +62,10 @@ const MyComponent = () => (
   <LocalReducer
     reducer={reducer}
     actions={actions}
-    sagas={[saga]}
     devToolsOptions={devToolsOptions}
+    // Both of these are valid:
+    sagas={[saga]}
+    rootSaga={saga}
     render={(state, actions, dispatch) => {
       // state = redux state
       // actions = binded actions (no need to dispatch)

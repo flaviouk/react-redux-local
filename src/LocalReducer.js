@@ -8,9 +8,9 @@ class LocalReducer extends Component {
   constructor (props) {
     super(props)
 
-    const { reducer, sagas, middleware, actions, devToolsOptions } = props
+    const { reducer, rootSaga, sagas, middleware, actions, devToolsOptions } = props
 
-    this.sagaMiddleware = sagas.length && createSagaMiddleware()
+    this.sagaMiddleware = (sagas.length || rootSaga) && createSagaMiddleware()
 
     const allMiddleware = [...middleware]
 
@@ -32,7 +32,10 @@ class LocalReducer extends Component {
   }
 
   componentWillMount () {
-    this.props.sagas.map(saga => this.sagas.push(this.sagaMiddleware.run(saga)))
+    const { sagas, rootSaga } = this.props
+
+    sagas.map(saga => this.sagas.push(this.sagaMiddleware.run(saga)))
+    if (rootSaga) this.sagas.push(this.sagaMiddleware.run(rootSaga))
   }
 
   componentWillUnMount () {
@@ -52,6 +55,7 @@ LocalReducer.propTypes = {
   reducer: func.isRequired,
   actions: objectOf(func.isRequired).isRequired,
   sagas: arrayOf(func.isRequired),
+  rootSaga: func,
   middleware: arrayOf(func.isRequired),
   render: func.isRequired,
   devToolsOptions: object
