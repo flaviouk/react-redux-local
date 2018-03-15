@@ -14,4 +14,3 @@ scripts:
   - yarn run-all
 after_success:
   - yarn report-coverage
-  - yarn release

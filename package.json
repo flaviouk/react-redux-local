@@ -1,6 +1,6 @@
 {
   "name": "react-redux-local",
-  "version": "0.0.0-semantically-released",
+  "version": "1.2.0",
   "description": "",
   "author": "Flávio Carvalho <hi@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
@@ -20,8 +20,7 @@
     "format": "imflavio format",
     "format-watch": "imflavio format-watch",
     "postinstall": "npm run build",
-    "run-all": "npm-run-all --parallel coverage format lint build",
-    "release": "semantic-release pre && npm publish && semantic-release post"
+    "run-all": "npm-run-all --parallel coverage format lint build && yarn report-coverage"
   },
   "dependencies": {
     "react": "16.2.0",
@@ -47,8 +46,7 @@
     "rollup": "0.56.5",
     "rollup-plugin-node-resolve": "3.2.0",
     "rollup-plugin-strip-prop-types": "1.0.2",
-    "rollup-plugin-uglify": "3.0.0",
-    "semantic-release": "8.2.0"
+    "rollup-plugin-uglify": "3.0.0"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",
