@@ -6,7 +6,7 @@ node_modules
 _SpecRunner.html
 __benchmarks__
 dist
-build
+dist
 remote-repo/
 .module-cache
 fixtures/dom/public/react-dom.js

@@ -19,17 +19,11 @@ Adding a local reducer can be very verbose with libraries like [recompose](https
 
 ## Table of Contents
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION. It'll update automatically -->
-
 - [Installation](#installation)
 - [Usage](#usage)
 - [Inspiration](#inspiration)
 - [Other Solutions](#other-solutions)
-- [Contributors](#contributors)
 - [LICENSE](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Installation
 
@@ -43,7 +37,7 @@ yarn add react-redux-local
 
 ## Usage
 
-```
+```javascript
 import LocalReducer from 'react-redux-local'
 
 const actions = {
@@ -84,17 +78,10 @@ Michael Jackson - Never Write Another HoC
 ## Other Solutions
 
 [local-react-redux](https://github.com/HansDP/local-react-redux)
+
 [local-react-redux-saga](https://github.com/HansDP/local-react-redux-saga)
+
 [react-local-reducer](https://github.com/troch/react-local-reducer)
-
-## Contributors
-
-Thanks goes to these people:
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars.githubusercontent.com/u/8357327?v=3" width="100px;"/><br /><sub>Flávio Carvalho</sub>](https://imflavio.com)
-| :---: |
-<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors][all-contributors] specification.
 Contributions of any kind welcome!
@@ -126,4 +113,3 @@ MIT
 [github-star]: https://github.com/imflavio/react-redux-local/stargazers
 [twitter]: https://twitter.com/intent/tweet?text=Check%20out%20react-redux-local%20by%20%40imflavio_%20https%3A%2F%2Fgithub.com%2Fimflavio%2Freact-redux-local%20%F0%9F%91%8D
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/imflavio/react-redux-local.svg?style=social
-[all-contributors]: https://github.com/imflavio/all-contributors

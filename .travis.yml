@@ -12,7 +12,7 @@ branches:
 notifications:
   email: false
 scripts:
-  - npm run
+  - npm run-all
 after_success:
   - npm run report-coverage
   - npm run release

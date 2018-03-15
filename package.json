@@ -2,23 +2,63 @@
   "name": "react-redux-local",
   "version": "0.0.0-semantically-released",
   "description": "",
-  "main": "build/index.js",
+  "author": "Flávio Carvalho <hi@imflavio.com> (https://imflavio.com/)",
+  "license": "MIT",
+  "main": "dist/umd.js",
   "engines": {
-    "node": "> 4",
-    "npm": "> 3"
+    "node": "> 6",
+    "npm": "> 5"
   },
   "scripts": {
-    "build": "neutrino build",
-    "test": "neutrino test",
-    "coverage": "neutrino test --coverage",
+    "build:std": "NODE_ENV=production rollup --config src/rollup/std.js",
+    "build:min": "NODE_ENV=production rollup --config src/rollup/min.js",
+    "build": "yarn build:std && yarn build:min",
+    "test": "jest",
+    "coverage": "yarn test --coverage",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "lint": "standard",
-    "prettier": "prettier-standard 'src/**/*.js'",
+    "lint": "imflavio lint",
+    "format": "imflavio format",
+    "format-watch": "imflavio format-watch",
     "postinstall": "npm run build",
-    "run-all": "npm-run-all --parallel coverage lint build",
+    "run-all": "npm-run-all --parallel coverage format lint build",
     "release": "semantic-release pre && npm publish && semantic-release post"
   },
+  "dependencies": {
+    "react": "16.2.0",
+    "redux": "3.7.2",
+    "redux-devtools-extension": "2.13.2",
+    "redux-saga": "0.16.0"
+  },
+  "devDependencies": {
+    "@imflavio/tools": "1.1.1",
+    "babel-cli": "6.26.0",
+    "babel-jest": "22.4.1",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "codecov": "3.0.0",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.1",
+    "jest": "22.4.2",
+    "npm-run-all": "4.1.2",
+    "pre-commit": "1.2.2",
+    "prop-types": "15.6.0",
+    "react-dom": "16.2.0",
+    "rollup": "0.56.5",
+    "rollup-plugin-node-resolve": "3.2.0",
+    "rollup-plugin-strip-prop-types": "1.0.2",
+    "rollup-plugin-uglify": "3.0.0",
+    "semantic-release": "8.2.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",
+    "redux": "^2.0.0 || ^3.0.0"
+  },
+  "files": [
+    "build"
+  ],
   "pre-commit": [
+    "format",
     "lint",
     "test"
   ],
@@ -28,36 +68,6 @@
     "local",
     "recompose"
   ],
-  "author": "Flávio Carvalho <hi@imflavio.com> (https://imflavio.com/)",
-  "license": "MIT",
-  "dependencies": {
-    "neutrino": "7.3.3",
-    "neutrino-preset-component": "0.0.1",
-    "neutrino-preset-jest": "7.3.3",
-    "react": "16.2.0",
-    "redux": "3.7.2",
-    "redux-devtools-extension": "2.13.2",
-    "redux-saga": "0.16.0"
-  },
-  "devDependencies": {
-    "codecov": "3.0.0",
-    "npm-run-all": "4.1.2",
-    "pre-commit": "1.2.2",
-    "prettier-standard": "7.0.3",
-    "prop-types": "15.6.0",
-    "semantic-release": "8.2.0",
-    "source-map-support": "0.5.0",
-    "standard": "10.0.3"
-  },
-  "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",
-    "redux": "^2.0.0 || ^3.0.0"
-  },
-  "standard": {
-    "env": [
-      "jest"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/imflavio/react-redux-local.git"
