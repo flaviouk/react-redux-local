@@ -11,7 +11,7 @@ branches:
 notifications:
   email: false
 scripts:
-  - npm run
+  - yarn run-all
 after_success:
-  - npm run report-coverage
-  - npm run release
+  - yarn report-coverage
+  - yarn release
