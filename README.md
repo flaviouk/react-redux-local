@@ -57,9 +57,7 @@ const MyComponent = () => (
     reducer={reducer}
     actions={actions}
     devToolsOptions={devToolsOptions}
-    // Both of these are valid:
-    sagas={[saga]}
-    rootSaga={saga}
+    saga={saga}
     render={(state, actions, dispatch) => {
       // state = redux state
       // actions = binded actions (no need to dispatch)
