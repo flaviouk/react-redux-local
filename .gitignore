@@ -5,8 +5,6 @@ node_modules
 .grunt
 _SpecRunner.html
 __benchmarks__
-dist
-dist
 remote-repo/
 .module-cache
 fixtures/dom/public/react-dom.js

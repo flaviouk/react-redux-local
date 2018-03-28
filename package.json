@@ -19,7 +19,6 @@
     "lint": "imflavio lint",
     "format": "imflavio format",
     "format-watch": "imflavio format-watch",
-    "postinstall": "npm run build",
     "run-all": "npm-run-all --parallel coverage format lint build && yarn report-coverage"
   },
   "dependencies": {
@@ -58,7 +57,8 @@
   "pre-commit": [
     "format",
     "lint",
-    "test"
+    "test",
+    "build"
   ],
   "keywords": [
     "react",
