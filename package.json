@@ -52,7 +52,16 @@
     "redux": "^2.0.0 || ^3.0.0"
   },
   "files": [
-    "build"
+    "dist/amd.js",
+    "dist/amd.min.js",
+    "dist/cjs.js",
+    "dist/cjs.min.js",
+    "dist/es.js",
+    "dist/es.min.js",
+    "dist/iife.js",
+    "dist/iife.min.js",
+    "dist/umd.js",
+    "dist/umd.min.js"
   ],
   "pre-commit": [
     "format",
