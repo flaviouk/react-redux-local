@@ -19,7 +19,7 @@
     "lint": "imflavio lint",
     "format": "imflavio format",
     "format-watch": "imflavio format-watch",
-    "run-all": "npm-run-all --parallel coverage format lint build && yarn report-coverage"
+    "run-all": "npm-run-all --parallel coverage format lint build"
   },
   "dependencies": {
     "react": "16.2.0",
