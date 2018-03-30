@@ -18,7 +18,11 @@ Object {
 }
 `;
 
-exports[`should render different states based on actions 4`] = `undefined`;
+exports[`should render different states based on actions 4`] = `
+Object {
+  "counter": 0,
+}
+`;
 
 exports[`should render different states based on actions 5`] = `
 Object {

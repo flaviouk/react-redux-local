@@ -33,7 +33,7 @@ it('should render different states based on actions', () => {
 
   /* -------------------> Reset <------------------- */
   wrapper.instance().dispatch(actions.reset())
-  expect(wrapper.instance.state).toMatchSnapshot()
+  expect(wrapper.instance().state).toMatchSnapshot()
 
   /* -------------------> Decrease <------------------- */
   wrapper.instance().dispatch(actions.decrease())
