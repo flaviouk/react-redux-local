@@ -20,7 +20,7 @@ it('should render different states based on actions', () => {
       reducer={reducer}
       actions={actions}
       devToolsOptions={{ name: 'testing react-redux-local' }}
-      render={({ counter }) => <h1>Counter: {counter}</h1>}
+      children={({ counter }) => <h1>Counter: {counter}</h1>}
     />
   )
 
@@ -60,7 +60,7 @@ it('should call saga', () => {
       reducer={reducer}
       actions={actions}
       saga={saga}
-      render={({ counter }) => <h1>Counter: {counter}</h1>}
+      children={({ counter }) => <h1>Counter: {counter}</h1>}
     />
   )
 
@@ -87,7 +87,7 @@ it('middleware should work', () => {
       reducer={reducer}
       actions={actions}
       middleware={[middleware]}
-      render={({ counter }) => <h1>Counter: {counter}</h1>}
+      children={({ counter }) => <h1>Counter: {counter}</h1>}
     />
   )
 

@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "dist/umd.js",
   "engines": {
-    "node": "> 6",
+    "node": "> 8",
     "npm": "> 5"
   },
   "scripts": {
@@ -22,7 +22,7 @@
     "run-all": "npm-run-all --parallel coverage format lint build"
   },
   "dependencies": {
-    "react": "16.2.0",
+    "react": "16.3.0",
     "redux": "3.7.2",
     "redux-devtools-extension": "2.13.2",
     "redux-saga": "0.16.0"
@@ -30,9 +30,9 @@
   "devDependencies": {
     "@imflavio/tools": "1.1.1",
     "babel-cli": "6.26.0",
+    "babel-core": "6.26.0",
     "babel-jest": "22.4.1",
-    "babel-preset-env": "1.6.1",
-    "babel-preset-react": "6.24.1",
+    "babel-preset-react-app": "3.1.1",
     "codecov": "3.0.0",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
@@ -48,7 +48,7 @@
     "rollup-plugin-uglify": "3.0.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",
+    "react": "^16.3.0",
     "redux": "^2.0.0 || ^3.0.0"
   },
   "files": [
