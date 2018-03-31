@@ -6,8 +6,8 @@
   "license": "MIT",
   "main": "dist/index.js",
   "engines": {
-    "node": "> 8",
-    "npm": "> 5"
+    "node": ">= 8",
+    "npm": ">= 5"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack",
