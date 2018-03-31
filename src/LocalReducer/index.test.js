@@ -14,85 +14,87 @@ it('should be defined', () => {
   expect(LocalReducer).toBeDefined()
 })
 
-it('should render different states based on actions', () => {
-  const wrapper = mount(
-    <LocalReducer
-      reducer={reducer}
-      actions={actions}
-      devToolsOptions={{ name: 'testing react-redux-local' }}
-      children={({ counter }) => <h1>Counter: {counter}</h1>}
-    />
-  )
+let wrapper = undefined
+let middlewareCallback = undefined
+let sagaCallback = undefined
 
-  /* -------------------> Increase <------------------- */
-  expect(wrapper.instance().state).toMatchSnapshot()
-  wrapper.instance().dispatch(actions.increase())
-  expect(wrapper.instance().state).toMatchSnapshot()
-  wrapper.instance().boundActions.increase()
-  expect(wrapper.instance().state).toMatchSnapshot()
+beforeEach(() => {
+  middlewareCallback = jest.fn()
+  sagaCallback = jest.fn()
 
-  /* -------------------> Reset <------------------- */
-  wrapper.instance().dispatch(actions.reset())
-  expect(wrapper.instance().state).toMatchSnapshot()
-
-  /* -------------------> Decrease <------------------- */
-  wrapper.instance().dispatch(actions.decrease())
-  expect(wrapper.instance().state).toMatchSnapshot()
-  wrapper.instance().boundActions.decrease()
-  expect(wrapper.instance().state).toMatchSnapshot()
-
-  /* -------------------> Reset <------------------- */
-  wrapper.instance().boundActions.reset()
-  expect(wrapper.instance().state).toMatchSnapshot()
-})
-
-it('should call saga', () => {
-  const mockCallback = jest.fn()
-
-  function* saga() {
-    yield takeEvery(types.INCREASE, mockCallback)
-    yield takeEvery(types.DECREASE, mockCallback)
-    yield takeEvery(types.RESET, mockCallback)
+  const middleware = store => next => action => {
+    middlewareCallback()
+    return next(action)
   }
 
-  const wrapper = mount(
+  function* saga() {
+    yield takeEvery(types.INCREASE, sagaCallback)
+    yield takeEvery(types.DECREASE, sagaCallback)
+    yield takeEvery(types.RESET, sagaCallback)
+  }
+
+  wrapper = mount(
     <LocalReducer
       reducer={reducer}
       actions={actions}
       saga={saga}
-      children={({ counter }) => <h1>Counter: {counter}</h1>}
+      middleware={[middleware]}
+      children={([{ counter }]) => <h1>Counter: {counter}</h1>}
     />
   )
-
-  wrapper.instance().boundActions.increase()
-  expect(mockCallback.mock.calls.length).toBe(1)
-
-  wrapper.instance().boundActions.decrease()
-  expect(mockCallback.mock.calls.length).toBe(2)
-
-  wrapper.instance().boundActions.reset()
-  expect(mockCallback.mock.calls.length).toBe(3)
 })
 
-it('middleware should work', () => {
-  const mockCallback = jest.fn()
+describe('should render different states based on actions: ', () => {
+  /* -------------------> Increase <------------------- */
+  test('should handle increase correctly', () => {
+    expect(wrapper.instance().state).toMatchSnapshot()
+    wrapper.instance().dispatch(actions.increase())
+    expect(wrapper.instance().state).toMatchSnapshot()
+    wrapper.instance().boundActions.increase()
+    expect(wrapper.instance().state).toMatchSnapshot()
+  })
 
-  const middleware = store => next => action => {
-    mockCallback()
-    return next(action)
-  }
+  /* -------------------> Reset dispatch <------------------- */
+  test('should handle reset with dispatch correctly', () => {
+    wrapper.instance().dispatch(actions.reset())
+    expect(wrapper.instance().state).toMatchSnapshot()
+  })
 
-  const wrapper = mount(
-    <LocalReducer
-      reducer={reducer}
-      actions={actions}
-      middleware={[middleware]}
-      children={({ counter }) => <h1>Counter: {counter}</h1>}
-    />
-  )
+  /* -------------------> Decrease <------------------- */
+  test('should handle decrease correctly', () => {
+    wrapper.instance().dispatch(actions.decrease())
+    expect(wrapper.instance().state).toMatchSnapshot()
+    wrapper.instance().boundActions.decrease()
+    expect(wrapper.instance().state).toMatchSnapshot()
+  })
 
+  /* -------------------> Reset <------------------- */
+  test('should handle reset correctly', () => {
+    wrapper.instance().boundActions.reset()
+    expect(wrapper.instance().state).toMatchSnapshot()
+  })
+})
+
+describe('should call saga: ', () => {
+  test('should handle increase', () => {
+    wrapper.instance().boundActions.increase()
+    expect(sagaCallback.mock.calls.length).toBe(1)
+  })
+
+  test('should handle decrease', () => {
+    wrapper.instance().boundActions.decrease()
+    expect(sagaCallback.mock.calls.length).toBe(1)
+  })
+
+  test('should handle reset', () => {
+    wrapper.instance().boundActions.reset()
+    expect(sagaCallback.mock.calls.length).toBe(1)
+  })
+})
+
+test('should handle middleware: ', () => {
   wrapper.instance().dispatch({ type: 'TOTALY_FAKE_ACTION_1' })
-  expect(mockCallback.mock.calls.length).toBe(1)
+  expect(middlewareCallback.mock.calls.length).toBe(1)
   wrapper.instance().dispatch({ type: 'TOTALY_FAKE_ACTION_2' })
-  expect(mockCallback.mock.calls.length).toBe(2)
+  expect(middlewareCallback.mock.calls.length).toBe(2)
 })

@@ -4,15 +4,13 @@
   "description": "",
   "author": "Flávio Carvalho <hi@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
-  "main": "dist/umd.js",
+  "main": "dist/index.js",
   "engines": {
     "node": "> 8",
     "npm": "> 5"
   },
   "scripts": {
-    "build:std": "NODE_ENV=production rollup --config src/rollup/std.js",
-    "build:min": "NODE_ENV=production rollup --config src/rollup/min.js",
-    "build": "yarn build:std && yarn build:min",
+    "build": "NODE_ENV=production webpack",
     "test": "jest",
     "coverage": "yarn test --coverage",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
@@ -29,10 +27,10 @@
   },
   "devDependencies": {
     "@imflavio/tools": "1.1.1",
-    "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
-    "babel-jest": "22.4.1",
+    "babel-loader": "7.1.4",
     "babel-preset-react-app": "3.1.1",
+    "babel-runtime": "6.26.0",
     "codecov": "3.0.0",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
@@ -40,28 +38,16 @@
     "jest": "22.4.2",
     "npm-run-all": "4.1.2",
     "pre-commit": "1.2.2",
-    "prop-types": "15.6.0",
-    "react-dom": "16.2.0",
-    "rollup": "0.56.5",
-    "rollup-plugin-node-resolve": "3.2.0",
-    "rollup-plugin-strip-prop-types": "1.0.2",
-    "rollup-plugin-uglify": "3.0.0"
+    "react-dom": "16.3.0",
+    "webpack": "4.4.1",
+    "webpack-cli": "2.0.13"
   },
   "peerDependencies": {
     "react": "^16.3.0",
-    "redux": "^2.0.0 || ^3.0.0"
+    "redux": "^3.1.0"
   },
   "files": [
-    "dist/amd.js",
-    "dist/amd.min.js",
-    "dist/cjs.js",
-    "dist/cjs.min.js",
-    "dist/es.js",
-    "dist/es.min.js",
-    "dist/iife.js",
-    "dist/iife.min.js",
-    "dist/umd.js",
-    "dist/umd.min.js"
+    "dist/index.js"
   ],
   "pre-commit": [
     "format",
