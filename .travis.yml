@@ -11,7 +11,7 @@ node_js:
 notifications:
   email: false
 
-scripts:
+script:
   - yarn format
   - yarn lint
   - yarn build
