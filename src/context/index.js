@@ -1,14 +1,17 @@
-import * as React from 'react'
+import React from 'react'
 
-import getProvider from './provider'
+import LocalReducer from '../LocalReducer'
+import getConsumer from './consumer'
 
-const getConsumer = Consumer => props => {}
-
-export default options => {
+export default localReducerProps => {
   const { Provider, Consumer } = React.createContext()
 
   return {
-    Provider: getProvider(Provider, options),
-    Consumer: getConsumer(Consumer)
+    Provider: ({ children }) => (
+      <LocalReducer {...localReducerProps}>
+        {value => <Provider value={value}>{children}</Provider>}
+      </LocalReducer>
+    ),
+    createConsumer: mapState => getConsumer(Consumer, mapState)
   }
 }

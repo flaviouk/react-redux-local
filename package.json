@@ -16,8 +16,7 @@
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "lint": "imflavio lint",
     "format": "imflavio format",
-    "format-watch": "imflavio format-watch",
-    "run-all": "npm-run-all --parallel coverage format lint build"
+    "format-watch": "imflavio format-watch"
   },
   "dependencies": {
     "react": "16.3.0",
@@ -36,8 +35,8 @@
     "enzyme-adapter-react-16": "1.1.1",
     "enzyme-to-json": "3.3.1",
     "jest": "22.4.2",
-    "npm-run-all": "4.1.2",
     "pre-commit": "1.2.2",
+    "prop-types": "15.6.1",
     "react-dom": "16.3.0",
     "webpack": "4.4.1",
     "webpack-cli": "2.0.13"
