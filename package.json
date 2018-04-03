@@ -10,7 +10,8 @@
     "lint": "imflavio lint 'packages/**/src/**/*.js'",
     "format": "imflavio format 'packages/**/*.js'",
     "format-watch": "imflavio format-watch 'packages/**/*.js'",
-    "prepublish": "cd packages/react-redux-local && yarn build",
+    "build": "cd packages/react-redux-local && yarn build",
+    "prepublish": "yarn build",
     "publish": "lerna publish"
   },
   "workspaces": [
