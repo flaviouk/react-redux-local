@@ -48,7 +48,7 @@ class LocalReducer extends Component {
   dispatch = (action = {}) => this.store.dispatch(action)
 
   render() {
-    return this.props.children([this.state, this.boundActions, this.dispatch])
+    return this.props.children(this.state, this.boundActions, this.dispatch)
   }
 }
 

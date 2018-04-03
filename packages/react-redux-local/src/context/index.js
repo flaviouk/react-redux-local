@@ -11,9 +11,12 @@ export default props => {
   return {
     Provider: ({ children }) => (
       <LocalReducer {...props}>
-        {value => <Provider value={value}>{children}</Provider>}
+        {(state, actions, dispatch) => (
+          <Provider value={{ state, actions, dispatch }}>{children}</Provider>
+        )}
       </LocalReducer>
     ),
-    createConsumer: mapState => getConsumer(Consumer, mapState)
+    createConsumer: (mapState, mapActions) =>
+      getConsumer(mapState, mapActions)(Consumer)
   }
 }
