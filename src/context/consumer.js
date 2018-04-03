@@ -3,13 +3,18 @@ import React from 'react'
 import Prevent from './Prevent'
 
 const defaultMapState = state => state
+const defaultMapDispatch = actions => actions
 
-const getConsumer = (Consumer, mapState = defaultMapState) => props => (
+const getConsumer = (
+  Consumer,
+  mapState = defaultMapState,
+  mapDispatch = defaultMapDispatch
+) => props => (
   <Consumer>
     {([state, actions, dispatch]) => (
       <Prevent
         children={props.children}
-        actions={actions}
+        actions={mapDispatch(actions, dispatch)}
         dispatch={dispatch}
         state={mapState(state)}
       />
