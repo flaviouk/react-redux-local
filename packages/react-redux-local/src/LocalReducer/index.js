@@ -33,7 +33,7 @@ class LocalReducer extends Component {
     this.boundActions = bindActionCreators(actions, this.dispatch)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { saga } = this.props
 
     if (saga) this.saga = this.sagaMiddleware.run(saga)

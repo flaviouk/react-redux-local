@@ -39,7 +39,7 @@ beforeEach(() => {
       actions={actions}
       saga={saga}
       middleware={[middleware]}
-      children={([{ counter }]) => <h1>Counter: {counter}</h1>}
+      children={({ counter }) => <h1>Counter: {counter}</h1>}
     />
   )
 })
