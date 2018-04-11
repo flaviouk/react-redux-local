@@ -1,6 +1,6 @@
 {
   "name": "react-redux-local",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "",
   "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
@@ -9,36 +9,17 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "scripts": {
-    "build:dev": "webpack --config webpack/dev.js",
-    "build:prod": "webpack --config webpack/prod.js",
-    "build": "yarn build:dev && yarn build:prod",
-    "test": "jest",
-    "coverage": "yarn test --coverage",
-    "report-coverage": "cat ./coverage/lcov.info | codecov"
-  },
   "dependencies": {
-    "lodash": "4.17.5",
-    "react": "16.3.0",
+    "lodash.isfunction": "3.0.9",
     "redux": "3.7.2",
     "redux-devtools-extension": "2.13.2",
     "redux-saga": "0.16.0"
   },
   "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-loader": "7.1.4",
-    "babel-preset-react-app": "3.1.1",
-    "babel-runtime": "6.26.0",
-    "codecov": "3.0.0",
-    "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
-    "enzyme-to-json": "3.3.1",
-    "jest": "22.4.2",
-    "prop-types": "15.6.1",
-    "react-dom": "16.3.0",
-    "webpack": "4.4.1",
-    "webpack-cli": "2.0.13",
-    "webpack-merge": "4.1.2"
+    "prop-types": "15.6.1"
+  },
+  "peerDependencies": {
+    "react": "^16.3.1"
   },
   "files": [
     "dist/index.js",

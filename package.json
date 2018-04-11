@@ -6,11 +6,15 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "cd packages/react-redux-local && yarn test",
+    "test": "jest",
     "lint": "imflavio lint 'packages/**/src/**/*.js'",
     "format": "imflavio format 'packages/**/*.js'",
     "format-watch": "imflavio format-watch 'packages/**/*.js'",
-    "build": "cd packages/react-redux-local && yarn build",
+    "build:dev": "webpack --config webpack/dev.js",
+    "build:prod": "webpack --config webpack/prod.js",
+    "build": "yarn build:dev && yarn build:prod",
+    "coverage": "yarn test --coverage",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "prepublish": "yarn build",
     "publish": "lerna publish"
   },
@@ -23,9 +27,25 @@
     "test",
     "build"
   ],
+  "dependencies": {
+    "react": "16.3.1",
+    "react-dom": "16.3.1"
+  },
   "devDependencies": {
     "@imflavio/tools": "1.1.1",
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.4",
+    "babel-preset-react-app": "3.1.1",
+    "babel-runtime": "6.26.0",
+    "codecov": "3.0.0",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.3",
+    "jest": "22.4.3",
+    "lerna": "2.9.1",
     "pre-commit": "1.2.2",
-    "lerna": "2.9.1"
+    "webpack": "4.5.0",
+    "webpack-cli": "2.0.14",
+    "webpack-merge": "4.1.2"
   }
 }

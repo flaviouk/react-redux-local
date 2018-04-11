@@ -1,12 +1,13 @@
 import React from 'react'
 
-import Context from './index'
+import { Consumer } from './index'
 
 const mapActions = ({ countUp }) => countUp
 
-const Consumer = Context.createConsumer(false, mapActions)
 const Up = () => (
-  <Consumer>{(_, action) => <button onClick={action}>UP</button>}</Consumer>
+  <Consumer mapActions={mapActions}>
+    {(_, action) => <button onClick={action}>UP</button>}
+  </Consumer>
 )
 
 export default Up

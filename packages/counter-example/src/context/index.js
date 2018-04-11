@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export default createContext({
+export const { Provider, Consumer } = createContext({
   reducer,
   actions,
   devToolsOptions: { name: 'react-redux-local - DevTools' }
