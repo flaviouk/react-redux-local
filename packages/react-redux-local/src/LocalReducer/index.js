@@ -33,7 +33,7 @@ class LocalReducer extends Component {
     this.boundActions = bindActionCreators(actions, this.dispatch)
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { saga } = this.props
 
     if (saga) this.saga = this.sagaMiddleware.run(saga)
@@ -45,12 +45,10 @@ class LocalReducer extends Component {
     if (saga) this.saga.cancel()
   }
 
-  dispatch(action = {}) {
-    this.store.dispatch(action)
-  }
+  dispatch = (action = {}) => this.store.dispatch(action)
 
   render() {
-    return this.props.render(this.state, this.boundActions, this.dispatch)
+    return this.props.children(this.state, this.boundActions, this.dispatch)
   }
 }
 
@@ -59,7 +57,7 @@ LocalReducer.propTypes = {
   actions: objectOf(func.isRequired).isRequired,
   saga: func,
   middleware: arrayOf(func.isRequired),
-  render: func.isRequired,
+  children: func.isRequired,
   devToolsOptions: object
 }
 

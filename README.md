@@ -34,6 +34,8 @@ yarn add react-redux-local
 
 ## Usage
 
+### LocalReducer
+
 ```javascript
 import LocalReducer from 'react-redux-local'
 
@@ -47,7 +49,7 @@ function * saga () {
 }
 
 // https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md#windowdevtoolsextensionconfig
-const devToolsOptions = {}
+const devToolsOptions = { name: 'Custom redux devtools tab' }
 
 const MyComponent = () => (
   <LocalReducer
@@ -55,7 +57,7 @@ const MyComponent = () => (
     actions={actions}
     devToolsOptions={devToolsOptions}
     saga={saga}
-    render={(state, actions, dispatch) => {
+    children={(state, actions, dispatch) => {
       // state = redux state
       // actions = binded actions (no need to dispatch)
       // dispatch = optional dispatch function, if you need a more complex workflow
@@ -63,6 +65,10 @@ const MyComponent = () => (
   />
 )
 ```
+
+### createContext
+
+TODO
 
 ## Inspiration
 

@@ -1,67 +1,24 @@
 {
-  "name": "react-redux-local",
-  "version": "2.0.2",
-  "description": "",
-  "author": "Flávio Carvalho <hi@imflavio.com> (https://imflavio.com/)",
+  "name": "react-redux-local-workspace",
+  "version": "3.0.0",
+  "repository": "git@github.com:imflavio/react-redux-local.git",
+  "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
-  "main": "dist/umd.js",
-  "engines": {
-    "node": "> 6",
-    "npm": "> 5"
-  },
+  "private": true,
   "scripts": {
-    "build:std": "NODE_ENV=production rollup --config src/rollup/std.js",
-    "build:min": "NODE_ENV=production rollup --config src/rollup/min.js",
-    "build": "yarn build:std && yarn build:min",
     "test": "jest",
+    "lint": "imflavio lint 'packages/**/src/**/*.js'",
+    "format": "imflavio format 'packages/**/*.js'",
+    "format-watch": "imflavio format-watch 'packages/**/*.js'",
+    "build:dev": "webpack --config webpack/dev.js",
+    "build:prod": "webpack --config webpack/prod.js",
+    "build": "yarn build:dev && yarn build:prod",
     "coverage": "yarn test --coverage",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "lint": "imflavio lint",
-    "format": "imflavio format",
-    "format-watch": "imflavio format-watch",
-    "run-all": "npm-run-all --parallel coverage format lint build"
+    "prepublish": "yarn build"
   },
-  "dependencies": {
-    "react": "16.2.0",
-    "redux": "3.7.2",
-    "redux-devtools-extension": "2.13.2",
-    "redux-saga": "0.16.0"
-  },
-  "devDependencies": {
-    "@imflavio/tools": "1.1.1",
-    "babel-cli": "6.26.0",
-    "babel-jest": "22.4.1",
-    "babel-preset-env": "1.6.1",
-    "babel-preset-react": "6.24.1",
-    "codecov": "3.0.0",
-    "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
-    "enzyme-to-json": "3.3.1",
-    "jest": "22.4.2",
-    "npm-run-all": "4.1.2",
-    "pre-commit": "1.2.2",
-    "prop-types": "15.6.0",
-    "react-dom": "16.2.0",
-    "rollup": "0.56.5",
-    "rollup-plugin-node-resolve": "3.2.0",
-    "rollup-plugin-strip-prop-types": "1.0.2",
-    "rollup-plugin-uglify": "3.0.0"
-  },
-  "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",
-    "redux": "^2.0.0 || ^3.0.0"
-  },
-  "files": [
-    "dist/amd.js",
-    "dist/amd.min.js",
-    "dist/cjs.js",
-    "dist/cjs.min.js",
-    "dist/es.js",
-    "dist/es.min.js",
-    "dist/iife.js",
-    "dist/iife.min.js",
-    "dist/umd.js",
-    "dist/umd.min.js"
+  "workspaces": [
+    "packages/*"
   ],
   "pre-commit": [
     "format",
@@ -69,18 +26,25 @@
     "test",
     "build"
   ],
-  "keywords": [
-    "react",
-    "redux",
-    "local",
-    "recompose"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/imflavio/react-redux-local.git"
+  "dependencies": {
+    "react": "16.3.1",
+    "react-dom": "16.3.1"
   },
-  "bugs": {
-    "url": "https://github.com/imflavio/react-redux-local/issues"
-  },
-  "homepage": "https://github.com/imflavio/react-redux-local#readme"
+  "devDependencies": {
+    "@imflavio/tools": "1.1.1",
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.4",
+    "babel-preset-react-app": "3.1.1",
+    "babel-runtime": "6.26.0",
+    "codecov": "3.0.0",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.3",
+    "jest": "20.0.4",
+    "lerna": "2.9.1",
+    "pre-commit": "1.2.2",
+    "webpack": "4.5.0",
+    "webpack-cli": "2.0.14",
+    "webpack-merge": "4.1.2"
+  }
 }

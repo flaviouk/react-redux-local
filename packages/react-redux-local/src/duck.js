@@ -1,7 +1,7 @@
 export const types = {
-  INCREASE: Symbol('INCREASE'),
-  DECREASE: Symbol('DECREASE'),
-  RESET: Symbol('RESET')
+  INCREASE: 'INCREASE',
+  DECREASE: 'DECREASE',
+  RESET: 'RESET'
 }
 
 export const actions = {
