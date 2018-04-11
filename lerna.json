@@ -4,5 +4,6 @@
     "packages/react-redux-local"
   ],
   "version": "3.0.0",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "registry": "https://registry.npmjs.org/"
 }
