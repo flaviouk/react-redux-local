@@ -1,6 +1,6 @@
 {
   "name": "react-redux-local-workspace",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "repository": "git@github.com:imflavio/react-redux-local.git",
   "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
@@ -15,8 +15,7 @@
     "build": "yarn build:dev && yarn build:prod",
     "coverage": "yarn test --coverage",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "prepublish": "yarn build",
-    "publish": "lerna publish"
+    "prepublish": "yarn build"
   },
   "workspaces": [
     "packages/*"
