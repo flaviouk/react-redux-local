@@ -8,7 +8,7 @@ import Prevent from './Prevent'
 export default props => {
   if (!props.reducer) throw new Error('A reducer must be provided.')
   if (!props.actions) throw new Error('A set of actions must be provided.')
-  const Context = React.createContext()
+  const { Provider, Consumer } = React.createContext()
 
   const defaultMapState = () => undefined
   const defaultMapActions = () => undefined
@@ -17,29 +17,29 @@ export default props => {
     Provider: ({ children }) => (
       <LocalReducer {...props}>
         {(state, actions, dispatch) => (
-          <Context.Provider value={{ state, actions, dispatch }}>
-            {children}
-          </Context.Provider>
+          <Provider value={{ state, actions, dispatch }}>{children}</Provider>
         )}
       </LocalReducer>
     ),
+
     Consumer: ({
       children,
       mapState = defaultMapState,
       mapActions = defaultMapActions
     }) => (
-      <Context.Consumer>
+      <Consumer>
         {({ state, actions, dispatch }) => (
           <Prevent
             state={
               isFunction(mapState) ? mapState(state) : defaultMapState(state)
             }
             actions={mapActions(actions, dispatch)}
-            children={children}
             dispatch={dispatch}
-          />
+          >
+            {children}
+          </Prevent>
         )}
-      </Context.Consumer>
+      </Consumer>
     )
   }
 }
