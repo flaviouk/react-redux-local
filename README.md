@@ -4,79 +4,294 @@
 [![Code Coverage][coverage-badge]][coverage]
 [![version][version-badge]][package]
 [![downloads][downloads-badge]][npmtrends]
-[![MIT License][license-badge]][license]
 
 [![PRs Welcome][prs-badge]][prs]
+[![MIT License][license-badge]][license]
 
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
 
-Adding a local reducer can be very verbose with libraries like [recompose](https://github.com/acdlite/recompose), the goal of this library is to reduce boilerplate when creating a local reducer.
+# The problem
 
-## Table of Contents
+I love redux, but building a small and simple local reducer component on every project is not on top of the list of things I like to do the most, plus what if I want to take advantage of sagas, dev tools and the new context api? It becomes a not so simple component very quickly.
+
+# The solution
+
+You can think of `react-redux-local` as a mini, yet powerful version of [react-redux](https://github.com/reactjs/redux), the api is very simple, abstracting away things like creating a redux store, adding middleware, binding actions and plugging in the redux dev tools.
+
+# Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Inspiration](#inspiration)
+- [Api](#api)
+- [Examples](#examples)
 - [Other Solutions](#other-solutions)
 - [LICENSE](#license)
 
-## Installation
+# Installation
 
 This module is distributed via [npm][npm] which is bundled with [node][node] and
 should be installed as one of your project's `dependencies`:
 
 ```
-npm install --save react-redux-local
 yarn add react-redux-local
 ```
 
-## Usage
 
-### LocalReducer
+# Usage
 
-```javascript
+## LocalReducer
+
+```jsx
 import LocalReducer from 'react-redux-local'
 
-const actions = {
-  doSomething: () => ({ type: 'SOMETHING' })
-}
+// https://github.com/erikras/ducks-modular-redux
+import { actions, reducer, saga, middleware, devToolsOptions } from './duck'
 
-// https://github.com/redux-saga/redux-saga
-function * saga () {
-  yield takeEvery('SOMETHING', () => console.log('Action with type SOMETHING was triggered'))
-}
-
-// https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md#windowdevtoolsextensionconfig
-const devToolsOptions = { name: 'Custom redux devtools tab' }
-
-const MyComponent = () => (
+const App = () => (
   <LocalReducer
-    reducer={reducer}
     actions={actions}
-    devToolsOptions={devToolsOptions}
+    reducer={reducer}
     saga={saga}
-    children={(state, actions, dispatch) => {
-      // state = redux state
-      // actions = binded actions (no need to dispatch)
-      // dispatch = optional dispatch function, if you need a more complex workflow
-    }}
-  />
+    middleware={middleware}
+    devToolsOptions={devToolsOptions}
+  >
+    {(state, actions, dispatch) => (
+      <YourComponent
+        state={state}
+        actions={actions}
+      />
+    )}
+  </LocalReducer>
 )
 ```
 
-### createContext
+## createContext
 
-TODO
+```jsx
+import { createContext } from 'react-redux-local'
 
-## Inspiration
+import { actions, reducer, saga, middleware, devToolsOptions } from './redux'
 
-Michael Jackson - Never Write Another HoC
+const { Provider, Consumer } = createContext({
+  actions,
+  reducer,
+  saga,
+  middleware,
+  devToolsOptions
+})
+
+const Up = () => (
+  <Consumer mapActions={({ countUp }) => countUp}>
+    {(_, action) => <button onClick={action}>UP</button>}
+  </Consumer>
+)
+
+const Down = () => (
+  <Consumer mapActions={({ countDown }) => countDown}>
+    {(_, action) => <button onClick={action}>DOWN</button>}
+  </Consumer>
+)
+
+// Will only rerender when the "counter" state changes
+const Count = () => (
+  <Consumer mapState={({ counter }) => counter}>
+    {state => <h3>Count: {state}</h3>}
+  </Consumer>
+)
+
+// Will only rerender when the "total" state changes
+const TotalCount = () => (
+  <Consumer mapState={({ total }) => total}>
+    {state => <h3>Total count: {state}</h3>}
+  </Consumer>
+)
+
+// Will only rerender when the "downs" state changes
+const DownsOnly = () => (
+  <Consumer mapState={({ downs }) => downs}>
+    {state => <h3>Downs: {state}</h3>}
+  </Consumer>
+)
+
+const App = () => (
+  <Provider>
+    <Up />
+
+    <Down />
+
+    <Count />
+
+    <TotalCount />
+
+    <DownOnly />
+  </Provider>
+)
+
+```
+
+# Api
+
+
+## Props
+
+> Tip: `createContext` takes the same props as `LocalReducer`
+
+### `reducer`
+
+> func.isRequired
+
+A reducer specifies how the application's state changes in response to actions sent to the store.
+
+[Learn More](https://redux.js.org/basics/reducers)
+
+> e.g.
+```jsx
+const initialState = { counter: 0, total: 0, downs: 0 }
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'COUNT_UP':
+      return {
+        counter: state.counter + 1,
+        total: state.total + 1,
+        downs: state.downs
+      }
+
+    case 'COUNT_DOWN':
+      return {
+        counter: state.counter - 1,
+        total: state.total + 1,
+        downs: state.downs + 1
+      }
+
+    default:
+      return state
+  }
+}
+```
+
+### `actions`
+
+> objectOf(func.isRequired).isRequired
+
+Actions are payloads of information that send data from your application to your store. They are the only source of information for the store.
+
+[Learn More](https://redux.js.org/basics/actions)
+
+> e.g.
+```jsx
+const actions = {
+  countUp: () => ({ type: 'COUNT_UP' }),
+  countDown: () => ({ type: 'COUNT_DOWN' })
+}
+```
+
+### `saga`
+
+> func
+
+Aims to make application side effects (i.e. asynchronous things like data fetching and impure things like accessing the browser cache) easier to manage, more efficient to execute, simple to test, and better at handling failures.
+
+[Learn More](https://github.com/redux-saga/redux-saga)
+
+> e.g.
+```jsx
+import { put } from 'redux-saga'
+
+function* doubleCount () {
+  put(actions.countUp())
+}
+
+function* saga () {
+  yield takeEvery('COUNT_UP', doubleCount)
+}
+```
+
+### `middleware`
+
+> arrayOf(func.isRequired)
+
+It provides a third-party extension point between dispatching an action, and the moment it reaches the reducer.
+
+[Learn More](https://redux.js.org/advanced/middleware)
+
+```jsx
+const middleware = store => next => action => {
+    console.log(action.type)
+    return next(action)
+  }
+```
+
+### `devToolsOptions`
+
+> object
+
+Allows for a better development experience with redux.
+
+[Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+
+[Learn More](https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md#windowdevtoolsextensionconfig)
+
+> e.g.
+```jsx
+const devToolsOptions = { name: 'My own devtools tab' }
+```
+
+### `children`
+
+> func.isRequired
+
+The term “render prop” refers to a simple technique for sharing code between React components using a prop whose value is a function.
+
+[Learn More](https://reactjs.org/docs/render-props.html)
+
+> Video: Michael Jackson - Never Write Another HoC
 
 [![Michael Jackson - Never Write Another HoC](https://img.youtube.com/vi/BcVAq3YFiuc/0.jpg)](https://www.youtube.com/watch?v=BcVAq3YFiuc)
 
-## Other Solutions
+## `<Consumer />` props (from `createContext`)
+
+### `mapState`
+
+> func | state => undefined
+
+Behaves like `mapStateToProps` from `react-redux` with the exception that it won't be available in the props (duh) and you are not required to return an object (thank you render props)
+
+### `mapActions`
+
+> func | (actions, dispatch) => undefined
+
+Allows you to pick what actions you want available in the second argument of your render function. `dispatch` is very much optional since all the actions are binded automatically.
+
+
+## `<LocalReducer />` render function
+
+```jsx
+(state, actions, dispatch) => <YourComponent />
+```
+
+### `state`
+
+Your application state.
+
+### `actions`
+
+Binded actions. (You don't need to dispatch)
+
+### `dispatch`
+
+<b>Optional</b> function that allows you to dispatch other actions.
+
+```jsx
+dispatch({ type: 'VERY_CUSTOM_ACTION' })
+```
+
+# Examples
+
+* [counter-example](https://github.com/imflavio/react-redux-local/tree/master/packages/counter-example)
+
+# Other Solutions
 
 [local-react-redux](https://github.com/HansDP/local-react-redux)
 
@@ -84,10 +299,9 @@ Michael Jackson - Never Write Another HoC
 
 [react-local-reducer](https://github.com/troch/react-local-reducer)
 
-This project follows the [all-contributors][all-contributors] specification.
-Contributions of any kind welcome!
+[react-copy-write](https://github.com/aweary/react-copy-write)
 
-## LICENSE
+# LICENSE
 
 MIT
 
