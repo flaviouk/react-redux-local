@@ -3,7 +3,7 @@
   "packages": [
     "packages/react-redux-local"
   ],
-  "version": "3.0.1",
+  "version": "3.0.2",
   "useWorkspaces": true,
   "registry": "https://registry.npmjs.org/"
 }
