@@ -28,15 +28,10 @@ class LocalReducer extends Component {
     )
 
     this.store.subscribe(() => this.setState(this.store.getState()))
+    if (this.sagaMiddleware) this.saga = this.sagaMiddleware.run(saga)
 
     this.dispatch = this.dispatch.bind(this)
     this.boundActions = bindActionCreators(actions, this.dispatch)
-  }
-
-  componentDidMount() {
-    const { saga } = this.props
-
-    if (saga) this.saga = this.sagaMiddleware.run(saga)
   }
 
   componentWillUnMount() {
