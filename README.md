@@ -22,12 +22,12 @@ You can think of `react-redux-local` as a mini, yet powerful version of [react-r
 
 # Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Api](#api)
-- [Examples](#examples)
-- [Other Solutions](#other-solutions)
-- [LICENSE](#license)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Api](#api)
+* [Examples](#examples)
+* [Other Solutions](#other-solutions)
+* [LICENSE](#license)
 
 # Installation
 
@@ -37,7 +37,6 @@ should be installed as one of your project's `dependencies`:
 ```
 yarn add react-redux-local
 ```
-
 
 # Usage
 
@@ -58,10 +57,7 @@ const App = () => (
     devToolsOptions={devToolsOptions}
   >
     {(state, actions, dispatch) => (
-      <YourComponent
-        state={state}
-        actions={actions}
-      />
+      <YourComponent state={state} actions={actions} />
     )}
   </LocalReducer>
 )
@@ -128,11 +124,9 @@ const App = () => (
     <DownOnly />
   </Provider>
 )
-
 ```
 
 # Api
-
 
 ## Props
 
@@ -147,6 +141,7 @@ A reducer specifies how the application's state changes in response to actions s
 [Learn More](https://redux.js.org/basics/reducers)
 
 > e.g.
+
 ```jsx
 const initialState = { counter: 0, total: 0, downs: 0 }
 const reducer = (state = initialState, action) => {
@@ -180,6 +175,7 @@ Actions are payloads of information that send data from your application to your
 [Learn More](https://redux.js.org/basics/actions)
 
 > e.g.
+
 ```jsx
 const actions = {
   countUp: () => ({ type: 'COUNT_UP' }),
@@ -196,14 +192,15 @@ Aims to make application side effects (i.e. asynchronous things like data fetchi
 [Learn More](https://github.com/redux-saga/redux-saga)
 
 > e.g.
+
 ```jsx
 import { put } from 'redux-saga'
 
-function* doubleCount () {
+function* doubleCount() {
   put(actions.countUp())
 }
 
-function* saga () {
+function* saga() {
   yield takeEvery('COUNT_UP', doubleCount)
 }
 ```
@@ -218,9 +215,9 @@ It provides a third-party extension point between dispatching an action, and the
 
 ```jsx
 const middleware = store => next => action => {
-    console.log(action.type)
-    return next(action)
-  }
+  console.log(action.type)
+  return next(action)
+}
 ```
 
 ### `devToolsOptions`
@@ -234,6 +231,7 @@ Allows for a better development experience with redux.
 [Learn More](https://github.com/zalmoxisus/redux-devtools-extension/blob/master/docs/API/Arguments.md#windowdevtoolsextensionconfig)
 
 > e.g.
+
 ```jsx
 const devToolsOptions = { name: 'My own devtools tab' }
 ```
@@ -264,11 +262,10 @@ Behaves like `mapStateToProps` from `react-redux` with the exception that it won
 
 Allows you to pick what actions you want available in the second argument of your render function. `dispatch` is very much optional since all the actions are binded automatically.
 
-
 ## `<LocalReducer />` render function
 
 ```jsx
-(state, actions, dispatch) => <YourComponent />
+;(state, actions, dispatch) => <YourComponent />
 ```
 
 ### `state`

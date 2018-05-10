@@ -21,17 +21,8 @@
   "peerDependencies": {
     "react": "^16.3.1"
   },
-  "files": [
-    "dist/index.js",
-    "dist/index.min.js"
-  ],
-  "keywords": [
-    "react",
-    "context",
-    "redux",
-    "local",
-    "recompose"
-  ],
+  "files": ["dist/index.js", "dist/index.min.js"],
+  "keywords": ["react", "context", "redux", "local", "recompose"],
   "repository": {
     "type": "git",
     "url": "https://github.com/imflavio/react-redux-local.git"

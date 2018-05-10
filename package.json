@@ -1,37 +1,35 @@
 {
   "name": "react-redux-local-workspace",
-  "version": "3.0.0",
   "repository": "git@github.com:imflavio/react-redux-local.git",
   "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
   "private": true,
+  "workspaces": ["packages/*"],
   "scripts": {
     "test": "jest",
-    "lint": "imflavio lint 'packages/**/src/**/*.js'",
-    "format": "imflavio format 'packages/**/*.js'",
-    "format-watch": "imflavio format-watch 'packages/**/*.js'",
+    "lint": "imflavio lint",
+    "format": "imflavio format",
     "build:dev": "webpack --config webpack/dev.js",
     "build:prod": "webpack --config webpack/prod.js",
     "build": "yarn build:dev && yarn build:prod",
     "coverage": "yarn test --coverage",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
-    "prepublish": "yarn build"
+    "precommit": "lint-staged",
+    "clean:build": "rm -rf coverage packages/react-redux-local/dist",
+    "clean:all": "rm -rf node_modules packages/**/node_modules coverage"
   },
-  "workspaces": [
-    "packages/*"
-  ],
-  "pre-commit": [
-    "format",
-    "lint",
-    "test",
-    "build"
-  ],
+  "lint-staged": {
+    "*.js": ["yarn clean:build", "yarn lint", "yarn build", "git add"]
+  },
+  "babel": {
+    "presets": ["react-app"]
+  },
   "dependencies": {
     "react": "16.3.1",
     "react-dom": "16.3.1"
   },
   "devDependencies": {
-    "@imflavio/tools": "1.1.1",
+    "@imflavio/cli": "2.0.0",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.4",
     "babel-preset-react-app": "3.1.1",
@@ -40,9 +38,10 @@
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "enzyme-to-json": "3.3.3",
+    "husky": "0.14.3",
     "jest": "20.0.4",
     "lerna": "2.9.1",
-    "pre-commit": "1.2.2",
+    "lint-staged": "7.1.0",
     "webpack": "4.5.0",
     "webpack-cli": "2.0.14",
     "webpack-merge": "4.1.2"
