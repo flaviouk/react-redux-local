@@ -17,10 +17,16 @@
     "clean": "rm -rf node_modules"
   },
   "lint-staged": {
-    "*.js": ["yarn lint", "yarn format", "git add"]
+    "*.js": [
+      "yarn lint",
+      "yarn format",
+      "git add"
+    ]
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
   "dependencies": {
     "lodash.isfunction": "3.0.9",
@@ -32,6 +38,7 @@
     "@imflavio/cli": "2.0.0",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.4",
+    "babel-polyfill": "6.26.0",
     "babel-preset-react-app": "3.1.1",
     "babel-runtime": "6.26.0",
     "codecov": "3.0.0",
@@ -41,9 +48,10 @@
     "husky": "0.14.3",
     "jest": "20.0.4",
     "lint-staged": "7.1.0",
+    "prop-types": "15.6.1",
+    "raf": "3.4.0",
     "react": "16.3.2",
     "react-dom": "16.3.2",
-    "prop-types": "15.6.1",
     "webpack": "4.5.0",
     "webpack-cli": "2.0.14",
     "webpack-merge": "4.1.2"
@@ -56,8 +64,17 @@
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "files": ["dist/index.js", "dist/index.min.js"],
-  "keywords": ["react", "context", "redux", "local", "recompose"],
+  "files": [
+    "dist/index.js",
+    "dist/index.min.js"
+  ],
+  "keywords": [
+    "react",
+    "context",
+    "redux",
+    "local",
+    "recompose"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/imflavio/react-redux-local.git"
