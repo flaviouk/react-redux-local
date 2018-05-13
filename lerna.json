@@ -1,7 +1,0 @@
-{
-  "lerna": "2.9.1",
-  "packages": ["packages/react-redux-local"],
-  "version": "3.0.3",
-  "useWorkspaces": true,
-  "registry": "https://registry.npmjs.org/"
-}

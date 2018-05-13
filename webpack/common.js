@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  entry: './packages/react-redux-local/src/index.js',
+  entry: './src/index.js',
   module: {
     rules: [
       {
@@ -20,6 +20,6 @@ module.exports = {
   output: {
     library: 'react-redux-local',
     libraryTarget: 'umd',
-    path: path.resolve(__dirname, '../packages/react-redux-local/dist')
+    path: path.resolve(__dirname, '../dist')
   }
 }

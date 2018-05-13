@@ -286,7 +286,7 @@ dispatch({ type: 'VERY_CUSTOM_ACTION' })
 
 # Examples
 
-* [counter-example](https://github.com/imflavio/react-redux-local/tree/master/packages/counter-example)
+* [counter-example](https://codesandbox.io/s/oj14r3qvn6?module=%2Fsrc%2Fcontext.js)
 
 # Other Solutions
 
