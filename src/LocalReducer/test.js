@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import { createSerializer } from 'enzyme-to-json'
 import { takeEvery } from 'redux-saga'
 
-import LocalReducer from './index'
+import LocalReducer from '../..'
 import { reducer, actions, types } from '../duck'
 
 configure({ adapter: new Adapter() })

@@ -12,9 +12,8 @@ notifications:
   email: false
 
 script:
-  - yarn format
-  - yarn lint
   - yarn build
+  - yarn test
   - yarn coverage
 
 after_success:
