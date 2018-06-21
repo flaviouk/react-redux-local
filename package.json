@@ -27,7 +27,7 @@
   },
   "babel": {
     "presets": [
-      "@imflavio/babel-preset"
+      "module:@imflavio/babel-preset"
     ]
   },
   "dependencies": {
