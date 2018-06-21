@@ -1,0 +1,469 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should be able to update state by firing an action 1`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    Got:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should be able to update state by firing an action 2`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    Got:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should be able to update state by firing an action 3`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    Got:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render with different selectors [variation] 1`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  undefined,
+  undefined,
+]
+    Got:
+    Array [
+  undefined,
+  Object {},
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render with different selectors [variation] 2`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  undefined,
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    Got:
+    Array [
+  undefined,
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render with different selectors [variation] 3`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  undefined,
+  Object {
+    "increase": [Function anonymous],
+  },
+]
+    Got:
+    Array [
+  undefined,
+  Object {
+    "increase": [Function anonymous],
+  },
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render with different selectors [variation] 4`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  undefined,
+]
+    Got:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {},
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render with different selectors [variation] 5`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    Got:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render with different selectors [variation] 6`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "increase": [Function anonymous],
+  },
+]
+    Got:
+    Array [
+  Object {
+    "counter": 0,
+  },
+  Object {
+    "increase": [Function anonymous],
+  },
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render with different selectors [variation] 7`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  0,
+  undefined,
+]
+    Got:
+    Array [
+  0,
+  Object {},
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render with different selectors [variation] 8`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  0,
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    Got:
+    Array [
+  0,
+  Object {
+    "decrease": [Function anonymous],
+    "increase": [Function anonymous],
+    "reset": [Function anonymous],
+  },
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`should render with different selectors [variation] 9`] = `
+<div>
+  <div>
+    Given:
+    Array [
+  0,
+  Object {
+    "increase": [Function anonymous],
+  },
+]
+    Got:
+    Array [
+  0,
+  Object {
+    "increase": [Function anonymous],
+  },
+]
+    <button
+      type="button"
+    >
+      inc
+    </button>
+    <button
+      type="button"
+    >
+      dec
+    </button>
+    <button
+      type="button"
+    >
+      reset
+    </button>
+  </div>
+</div>
+`;

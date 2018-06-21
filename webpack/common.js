@@ -5,7 +5,7 @@ module.exports = {
   externals: {
     react: 'react',
     redux: 'redux',
-    'redux-saga': 'redux-saga',
+    'redux-saga': 'redux-saga'
   },
   module: {
     rules: [

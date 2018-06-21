@@ -11,7 +11,7 @@ export const actions = {
 }
 
 const initialState = { counter: 0 }
-export const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case types.INCREASE:
       return { counter: state.counter + 1 }

@@ -11,6 +11,10 @@ node_js:
 notifications:
   email: false
 
+branches:
+  only:
+  - master
+
 script:
   - yarn build
   - yarn test
