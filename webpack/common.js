@@ -2,6 +2,13 @@ const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
+  externals: {
+    react: 'React',
+    redux: 'redux',
+    'redux-saga': 'redux-saga',
+
+// redux-saga
+  },
   module: {
     rules: [
       {

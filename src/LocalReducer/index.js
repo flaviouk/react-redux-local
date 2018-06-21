@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { func, objectOf, arrayOf, object } from 'prop-types'
 import { createStore, applyMiddleware, bindActionCreators } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
 class LocalReducer extends Component {
   constructor(props) {

@@ -4,7 +4,10 @@
   "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
   "main": "dist/index.js",
+  "unkpg": "dist/index.min.js",
+  "module": "src/index.js",
   "scripts": {
+    "postinstall": "yarn build",
     "test": "jest",
     "lint": "imflavio lint",
     "format": "imflavio format",
@@ -29,9 +32,7 @@
   },
   "dependencies": {
     "lodash.isfunction": "3.0.9",
-    "redux-devtools-extension": "2.13.2",
-    "redux": "3.7.2",
-    "redux-saga": "0.16.0"
+    "redux-devtools-extension": "2.13.2"
   },
   "devDependencies": {
     "@imflavio/cli": "2.0.0",
@@ -51,22 +52,21 @@
     "raf": "3.4.0",
     "react": "16.3.2",
     "react-dom": "16.3.2",
+    "redux": "3.7.2",
+    "redux-saga": "0.16.0",
     "webpack": "4.5.0",
     "webpack-cli": "2.0.14",
     "webpack-merge": "4.1.2"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
-    "react-dom": ">=16.3.0"
+    "redux": ">=3.7.2",
+    "redux-saga": ">=0.16.0"
   },
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "files": [
-    "dist/index.js",
-    "dist/index.min.js"
-  ],
   "keywords": [
     "react",
     "context",
