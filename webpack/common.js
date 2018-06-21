@@ -3,11 +3,9 @@ const path = require('path')
 module.exports = {
   entry: './src/index.js',
   externals: {
-    react: 'React',
+    react: 'react',
     redux: 'redux',
     'redux-saga': 'redux-saga',
-
-// redux-saga
   },
   module: {
     rules: [
@@ -16,7 +14,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: { presets: 'react-app' }
+            options: { presets: ['module:@imflavio/babel-preset'] }
           }
         ],
         exclude: /node_modules/
