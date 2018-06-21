@@ -14,7 +14,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            options: { presets: ['module:@imflavio/babel-preset'] }
+            options: { presets: ['react-app'] }
           }
         ],
         exclude: /node_modules/

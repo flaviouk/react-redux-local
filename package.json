@@ -27,7 +27,7 @@
   },
   "babel": {
     "presets": [
-      "module:@imflavio/babel-preset"
+      "react-app"
     ]
   },
   "dependencies": {
@@ -35,9 +35,9 @@
     "redux-devtools-extension": "2.13.2"
   },
   "devDependencies": {
-    "@imflavio/babel-preset": "2.0.0",
     "@imflavio/cli": "2.0.0",
-    "babel-jest": "23.0.1",
+    "babel-loader": "7.1.4",
+    "babel-preset-react-app": "3.1.1",
     "codecov": "3.0.0",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
