@@ -1,6 +1,6 @@
 {
   "name": "react-redux-local",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
   "main": "lib/index.js",
@@ -17,22 +17,28 @@
     "clean": "rm -rf node_modules coverage dist",
     "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/index.js",
     "build:es": "cross-env BABEL_ENV=es NODE_ENV=es rollup -c -o es/index.js",
-    "build:umd":
-      "cross-env BABEL_ENV=es NODE_ENV=development rollup -c -o dist/index.js",
-    "build:umd:min":
-      "cross-env BABEL_ENV=es NODE_ENV=production rollup -c -o dist/index.min.js",
-    "build":
-      "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min"
+    "build:umd": "cross-env BABEL_ENV=es NODE_ENV=development rollup -c -o dist/index.js",
+    "build:umd:min": "cross-env BABEL_ENV=es NODE_ENV=production rollup -c -o dist/index.min.js",
+    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min"
   },
   "lint-staged": {
-    "src/*.js": ["yarn lint", "git add"]
+    "src/*.js": [
+      "yarn lint",
+      "git add"
+    ]
   },
   "babel": {
-    "presets": ["react"],
-    "plugins": ["transform-class-properties"],
+    "presets": [
+      "react"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ],
     "env": {
       "test": {
-        "plugins": ["transform-es2015-modules-commonjs"]
+        "plugins": [
+          "transform-es2015-modules-commonjs"
+        ]
       }
     }
   },
@@ -73,12 +79,23 @@
     "redux": ">=3.7.2",
     "redux-saga": ">=0.16.0"
   },
-  "files": ["dist", "lib", "es", "src"],
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src"
+  ],
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "keywords": ["react", "context", "redux", "local", "recompose"],
+  "keywords": [
+    "react",
+    "context",
+    "redux",
+    "local",
+    "recompose"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/imflavio/react-redux-local.git"
