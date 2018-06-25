@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { createContext } from 'react'
 import isFunction from 'lodash.isfunction'
 
-import LocalReducer from '../LocalReducer'
-
+import LocalReducer from './LocalReducer'
 import Prevent from './Prevent'
 
 export default props => {
   if (!props.reducer) throw new Error('A reducer must be provided.')
   if (!props.actions) throw new Error('A set of actions must be provided.')
-  const { Provider, Consumer } = React.createContext()
+  const { Provider, Consumer } = createContext()
 
   const defaultMapState = () => undefined
   const defaultMapActions = () => undefined

@@ -10,7 +10,7 @@ class LocalReducer extends Component {
 
     const { reducer, saga, middleware, actions, devToolsOptions } = props
 
-    this.sagaMiddleware = saga && createSagaMiddleware()
+    this.sagaMiddleware = saga && createSagaMiddleware && createSagaMiddleware()
 
     const allMiddleware = [...middleware]
 
@@ -30,14 +30,11 @@ class LocalReducer extends Component {
     this.store.subscribe(() => this.setState(this.store.getState()))
     if (this.sagaMiddleware) this.saga = this.sagaMiddleware.run(saga)
 
-    this.dispatch = this.dispatch.bind(this)
     this.boundActions = bindActionCreators(actions, this.dispatch)
   }
 
   componentWillUnMount() {
-    const { saga } = this.props
-
-    if (saga) this.saga.cancel()
+    if (this.sagaMiddleware) this.saga.cancel()
   }
 
   dispatch = (action = {}) => this.store.dispatch(action)

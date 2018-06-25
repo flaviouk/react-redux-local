@@ -3,48 +3,55 @@
   "version": "3.2.0",
   "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
-  "main": "dist/index.js",
-  "unkpg": "dist/index.min.js",
-  "module": "src/index.js",
+  "main": "lib/index.js",
+  "unpkg": "dist/index.js",
+  "module": "es/index.js",
   "scripts": {
     "postinstall": "yarn build",
     "test": "jest",
     "lint": "imflavio lint",
     "format": "imflavio format",
-    "build:dev": "webpack --config webpack/dev.js",
-    "build:prod": "webpack --config webpack/prod.js",
-    "build": "yarn build:dev && yarn build:prod",
     "coverage": "yarn test --coverage",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "precommit": "lint-staged",
-    "clean": "rm -rf node_modules coverage dist"
+    "clean": "rm -rf node_modules coverage dist",
+    "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/index.js",
+    "build:es": "cross-env BABEL_ENV=es NODE_ENV=es rollup -c -o es/index.js",
+    "build:umd":
+      "cross-env BABEL_ENV=es NODE_ENV=development rollup -c -o dist/index.js",
+    "build:umd:min":
+      "cross-env BABEL_ENV=es NODE_ENV=production rollup -c -o dist/index.min.js",
+    "build":
+      "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min"
   },
   "lint-staged": {
-    "{src,webpack}/*.js": [
-      "yarn lint",
-      "git add"
-    ]
+    "{src,webpack}/*.js": ["yarn lint", "git add"]
   },
   "babel": {
-    "presets": [
-      "react-app"
+    "presets": ["react"],
+    "plugins": [
+      "transform-class-properties",
+      "transform-es2015-modules-commonjs"
     ]
   },
   "dependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
     "lodash.isfunction": "3.0.9",
     "redux-devtools-extension": "2.13.2"
   },
   "devDependencies": {
     "@imflavio/cli": "2.0.0",
-    "babel-loader": "7.1.4",
-    "babel-preset-react-app": "3.1.1",
+    "babel-core": "6.26.3",
+    "babel-plugin-external-helpers": "6.22.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-preset-react": "6.24.1",
     "codecov": "3.0.0",
+    "cross-env": "5.2.0",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "enzyme-to-json": "3.3.3",
     "husky": "0.14.3",
     "jest": "23.1.0",
-    "jest-cli": "23.1.0",
     "lint-staged": "7.1.0",
     "prop-types": "15.6.1",
     "raf": "3.4.0",
@@ -52,26 +59,24 @@
     "react-dom": "16.3.2",
     "redux": "3.7.2",
     "redux-saga": "0.16.0",
-    "webpack": "4.5.0",
-    "webpack-cli": "2.0.14",
-    "webpack-merge": "4.1.2"
+    "rollup": "0.61.2",
+    "rollup-plugin-babel": "3.0.5",
+    "rollup-plugin-commonjs": "9.1.3",
+    "rollup-plugin-node-resolve": "3.3.0",
+    "rollup-plugin-replace": "2.0.0",
+    "rollup-plugin-uglify": "3.0.0"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
     "redux": ">=3.7.2",
     "redux-saga": ">=0.16.0"
   },
+  "files": ["dist", "lib", "es", "src"],
   "engines": {
     "node": ">= 8",
     "npm": ">= 5"
   },
-  "keywords": [
-    "react",
-    "context",
-    "redux",
-    "local",
-    "recompose"
-  ],
+  "keywords": ["react", "context", "redux", "local", "recompose"],
   "repository": {
     "type": "git",
     "url": "https://github.com/imflavio/react-redux-local.git"

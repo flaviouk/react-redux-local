@@ -1,4 +1,4 @@
 import LocalReducer from './LocalReducer'
 
 export default LocalReducer
-export { default as createContext } from './context'
+export { default as createContext } from './Context'
