@@ -25,7 +25,7 @@
       "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min"
   },
   "lint-staged": {
-    "{src,webpack}/*.js": ["yarn lint", "git add"]
+    "src/*.js": ["yarn lint", "git add"]
   },
   "babel": {
     "presets": ["react"],
