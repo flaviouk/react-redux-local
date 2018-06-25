@@ -29,10 +29,12 @@
   },
   "babel": {
     "presets": ["react"],
-    "plugins": [
-      "transform-class-properties",
-      "transform-es2015-modules-commonjs"
-    ]
+    "plugins": ["transform-class-properties"],
+    "env": {
+      "test": {
+        "plugins": ["transform-es2015-modules-commonjs"]
+      }
+    }
   },
   "dependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
