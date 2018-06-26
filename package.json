@@ -4,8 +4,8 @@
   "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
   "main": "lib/index.js",
-  "unpkg": "dist/index.js",
-  "module": "es/index.js",
+  "unpkg": "dist/index.min.js",
+  "module": "dist/index.js",
   "scripts": {
     "test": "jest",
     "lint": "imflavio lint",
@@ -27,12 +27,8 @@
     ]
   },
   "babel": {
-    "presets": [
-      "react"
-    ],
-    "plugins": [
-      "transform-class-properties"
-    ],
+    "presets": ["react"],
+    "plugins": ["transform-class-properties", "transform-es2015-classes"],
     "env": {
       "test": {
         "plugins": [
@@ -42,7 +38,6 @@
     }
   },
   "dependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
     "lodash.isfunction": "3.0.9",
     "redux-devtools-extension": "2.13.2"
   },
@@ -51,6 +46,9 @@
     "babel-core": "6.26.3",
     "babel-plugin-external-helpers": "6.22.0",
     "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-es2015-classes": "6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
+    "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "codecov": "3.0.0",
     "cross-env": "5.2.0",
