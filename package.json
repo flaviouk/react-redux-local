@@ -1,6 +1,6 @@
 {
   "name": "react-redux-local",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
   "license": "MIT",
   "main": "lib/index.js",
@@ -27,8 +27,13 @@
     ]
   },
   "babel": {
-    "presets": ["react"],
-    "plugins": ["transform-class-properties", "transform-es2015-classes"],
+    "presets": [
+      "react"
+    ],
+    "plugins": [
+      "transform-class-properties",
+      "transform-es2015-classes"
+    ],
     "env": {
       "test": {
         "plugins": [
