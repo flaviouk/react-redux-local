@@ -7,7 +7,6 @@
   "unpkg": "dist/index.js",
   "module": "es/index.js",
   "scripts": {
-    "postinstall": "yarn build",
     "test": "jest",
     "lint": "imflavio lint",
     "format": "imflavio format",

@@ -1,6 +1,5 @@
 .DS_STORE
 node_modules
-dist
 *~
 *.pyc
 .grunt
@@ -39,5 +38,3 @@ buck-out/
 fastlane/report.xml
 fastlane/screenshots
 coverage
-es
-lib
