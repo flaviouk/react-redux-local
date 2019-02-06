@@ -1,60 +1,32 @@
-import nodeResolve from 'rollup-plugin-node-resolve'
 import babel from 'rollup-plugin-babel'
-import replace from 'rollup-plugin-replace'
-import uglify from 'rollup-plugin-uglify'
 import commonjs from 'rollup-plugin-commonjs'
+import external from 'rollup-plugin-peer-deps-external'
+import resolve from 'rollup-plugin-node-resolve'
 
-const env = process.env.NODE_ENV
-const config = {
+import pkg from './package.json'
+
+export default {
   name: 'react-redux-local',
   input: 'src/index.js',
-  plugins: [],
-  external: ['react', 'prop-types', 'redux', 'redux-saga']
-}
-
-if (env === 'es' || env === 'cjs') {
-  config.output = { format: env, indent: false }
-  config.external = ['symbol-observable']
-  config.plugins.push(
-    babel({
-      plugins: ['external-helpers']
-    })
-  )
-}
-
-if (env === 'development' || env === 'production') {
-  config.output = { format: 'umd', name: 'react-redux-local', indent: false }
-  config.plugins.push(
-    commonjs({
-      include: 'node_modules/**',
-      namedExports: {
-        './node_modules/react/index.js': ['React', 'Component', 'PureComponent']
-      }
-    }),
-    nodeResolve({
-      jsnext: true
-    }),
+  external: ['react', 'prop-types', 'redux', 'redux-saga'],
+  output: [
+    {
+      file: pkg.main,
+      format: 'cjs',
+      sourcemap: true,
+    },
+    {
+      file: pkg.module,
+      format: 'es',
+      sourcemap: true,
+    },
+  ],
+  plugins: [
+    external(),
     babel({
       exclude: 'node_modules/**',
-      plugins: ['external-helpers']
     }),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(env)
-    })
-  )
+    resolve(),
+    commonjs(),
+  ],
 }
-
-if (env === 'production') {
-  config.plugins.push(
-    uglify({
-      compress: {
-        pure_getters: true,
-        unsafe: true,
-        unsafe_comps: true,
-        warnings: false
-      }
-    })
-  )
-}
-
-export default config

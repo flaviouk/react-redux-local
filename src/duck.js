@@ -1,13 +1,13 @@
 export const types = {
   INCREASE: 'INCREASE',
   DECREASE: 'DECREASE',
-  RESET: 'RESET'
+  RESET: 'RESET',
 }
 
 export const actions = {
   increase: () => ({ type: types.INCREASE }),
   decrease: () => ({ type: types.DECREASE }),
-  reset: () => ({ type: types.RESET })
+  reset: () => ({ type: types.RESET }),
 }
 
 const initialState = { counter: 0 }
