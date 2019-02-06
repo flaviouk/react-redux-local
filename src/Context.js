@@ -1,5 +1,4 @@
 import React, { createContext } from 'react'
-import isFunction from 'lodash.isfunction'
 
 import LocalReducer from './LocalReducer'
 import Prevent from './Prevent'
@@ -24,13 +23,15 @@ export default props => {
     Consumer: ({
       children,
       mapState = defaultMapState,
-      mapActions = defaultMapActions
+      mapActions = defaultMapActions,
     }) => (
       <Consumer>
         {({ state, actions, dispatch }) => (
           <Prevent
             state={
-              isFunction(mapState) ? mapState(state) : defaultMapState(state)
+              typeof mapState === 'function'
+                ? mapState(state)
+                : defaultMapState(state)
             }
             actions={mapActions(actions, dispatch)}
             dispatch={dispatch}
@@ -39,6 +40,6 @@ export default props => {
           </Prevent>
         )}
       </Consumer>
-    )
+    ),
   }
 }

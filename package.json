@@ -1,92 +1,99 @@
 {
   "name": "react-redux-local",
-  "version": "3.3.3",
-  "author": "Flávio Carvalho <flavio@imflavio.com> (https://imflavio.com/)",
+  "version": "1.0.0",
+  "description": "",
+  "author": "imflavio",
   "license": "MIT",
-  "main": "lib/index.js",
+  "repository": "imflavio/react-redux-local",
+  "main": "dist/index.js",
   "unpkg": "dist/index.js",
-  "module": "es/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
   "scripts": {
-    "test": "jest",
-    "lint": "imflavio lint",
-    "format": "imflavio format",
-    "coverage": "yarn test --coverage",
-    "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "test": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "build": "rollup -c",
+    "start": "rollup -c -w",
     "precommit": "lint-staged",
-    "clean": "rm -rf node_modules coverage dist",
-    "build:commonjs": "cross-env NODE_ENV=cjs rollup -c -o lib/index.js",
-    "build:es": "cross-env BABEL_ENV=es NODE_ENV=es rollup -c -o es/index.js",
-    "build:umd": "cross-env BABEL_ENV=es NODE_ENV=development rollup -c -o dist/index.js",
-    "build:umd:min": "cross-env BABEL_ENV=es NODE_ENV=production rollup -c -o dist/index.min.js",
-    "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min"
+    "format": "prettier --write --config .prettierrc '**/*.{js,json,md}'",
+    "lint": "eslint 'src/**/*.js'",
+    "prepare": "yarn run build",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build"
   },
   "lint-staged": {
     "src/*.js": [
-      "yarn lint",
+      "eslint",
+      "git add"
+    ],
+    "**/*.{js,json,md}": [
+      "prettier --write --config .prettierrc",
       "git add"
     ]
   },
-  "babel": {
-    "presets": [
-      "react"
-    ],
-    "plugins": [
-      "transform-class-properties"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "transform-es2015-modules-commonjs"
-        ]
-      }
-    }
-  },
-  "dependencies": {
-    "lodash.isfunction": "3.0.9",
-    "redux-devtools-extension": "2.13.2"
-  },
   "devDependencies": {
-    "@imflavio/cli": "2.0.0",
-    "babel-core": "6.26.3",
-    "babel-plugin-external-helpers": "6.22.0",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
-    "babel-preset-react": "6.24.1",
-    "codecov": "3.0.0",
-    "cross-env": "5.2.0",
-    "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
-    "enzyme-to-json": "3.3.3",
-    "husky": "0.14.3",
-    "jest": "23.1.0",
-    "lint-staged": "7.1.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-external-helpers": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-bind": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.0.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^9.0.0",
+    "cross-env": "^5.2.0",
+    "enzyme": "3.8.0",
+    "enzyme-adapter-react-16": "1.9.1",
+    "enzyme-to-json": "3.3.5",
+    "eslint": "5.6.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-config-standard-react": "^6.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jest": "22.2.2",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "gh-pages": "^2.0.1",
+    "husky": "1.3.1",
+    "lint-staged": "8.1.3",
+    "prettier": "1.16.4",
     "prop-types": "15.6.1",
-    "raf": "3.4.0",
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
-    "redux": "3.7.2",
+    "raf": "3.4.1",
+    "react": "^16.8.0-alpha.1",
+    "react-dom": "16.8.0",
+    "react-scripts": "^2.1.3",
+    "redux": "4.0.1",
     "redux-saga": "0.16.0",
-    "rollup": "0.61.2",
-    "rollup-plugin-babel": "3.0.5",
-    "rollup-plugin-commonjs": "9.1.3",
-    "rollup-plugin-node-resolve": "3.3.0",
-    "rollup-plugin-replace": "2.0.0",
-    "rollup-plugin-uglify": "3.0.0"
+    "rollup": "^1.1.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-url": "^2.1.0"
   },
   "peerDependencies": {
     "react": ">=16.3.0",
     "redux": ">=3.7.2",
     "redux-saga": ">=0.16.0"
-  },
-  "files": [
-    "dist",
-    "lib",
-    "es",
-    "src"
-  ],
-  "engines": {
-    "node": ">= 8",
-    "npm": ">= 5"
   },
   "keywords": [
     "react",
@@ -94,13 +101,5 @@
     "redux",
     "local",
     "recompose"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/imflavio/react-redux-local.git"
-  },
-  "bugs": {
-    "url": "https://github.com/imflavio/react-redux-local/issues"
-  },
-  "homepage": "https://github.com/imflavio/react-redux-local#readme"
+  ]
 }

@@ -15,9 +15,9 @@ it('should be defined', () => {
   expect(LocalReducer).toBeDefined()
 })
 
-let wrapper = undefined
-let middlewareCallback = undefined
-let sagaCallback = undefined
+let wrapper = null
+let middlewareCallback = null
+let sagaCallback = null
 
 beforeEach(() => {
   middlewareCallback = jest.fn()
@@ -41,7 +41,7 @@ beforeEach(() => {
       saga={saga}
       middleware={[middleware]}
       children={({ counter }) => <h1>Counter: {counter}</h1>}
-    />
+    />,
   )
 })
 
@@ -79,23 +79,23 @@ describe('should render different states based on actions: ', () => {
 describe('should call saga: ', () => {
   test('should handle increase', () => {
     wrapper.instance().boundActions.increase()
-    expect(sagaCallback.mock.calls.length).toBe(1)
+    expect(sagaCallback.mock.calls).toHaveLength(1)
   })
 
   test('should handle decrease', () => {
     wrapper.instance().boundActions.decrease()
-    expect(sagaCallback.mock.calls.length).toBe(1)
+    expect(sagaCallback.mock.calls).toHaveLength(1)
   })
 
   test('should handle reset', () => {
     wrapper.instance().boundActions.reset()
-    expect(sagaCallback.mock.calls.length).toBe(1)
+    expect(sagaCallback.mock.calls).toHaveLength(1)
   })
 })
 
 test('should handle middleware: ', () => {
   wrapper.instance().dispatch({ type: 'TOTALY_FAKE_ACTION_1' })
-  expect(middlewareCallback.mock.calls.length).toBe(1)
+  expect(middlewareCallback.mock.calls).toHaveLength(1)
   wrapper.instance().dispatch({ type: 'TOTALY_FAKE_ACTION_2' })
-  expect(middlewareCallback.mock.calls.length).toBe(2)
+  expect(middlewareCallback.mock.calls).toHaveLength(2)
 })

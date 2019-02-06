@@ -1,8 +1,12 @@
 import { Component } from 'react'
 import { func, objectOf, arrayOf, object } from 'prop-types'
-import { createStore, applyMiddleware, bindActionCreators } from 'redux'
+import {
+  createStore,
+  applyMiddleware,
+  bindActionCreators,
+  compose,
+} from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
 class LocalReducer extends Component {
   constructor(props) {
@@ -18,13 +22,16 @@ class LocalReducer extends Component {
 
     const enhancers = applyMiddleware(...allMiddleware)
 
-    const composeEnhancers = composeWithDevTools(devToolsOptions)
+    const composeEnhancers =
+      typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(devToolsOptions)
+        : compose
 
     this.state = reducer(undefined, {})
 
     this.store = createStore(
       reducer,
-      devToolsOptions ? composeEnhancers(enhancers) : enhancers
+      devToolsOptions ? composeEnhancers(enhancers) : enhancers,
     )
 
     this.store.subscribe(() => this.setState(this.store.getState()))
@@ -50,11 +57,11 @@ LocalReducer.propTypes = {
   saga: func,
   middleware: arrayOf(func.isRequired),
   children: func.isRequired,
-  devToolsOptions: object
+  devToolsOptions: object,
 }
 
 LocalReducer.defaultProps = {
-  middleware: []
+  middleware: [],
 }
 
 export default LocalReducer

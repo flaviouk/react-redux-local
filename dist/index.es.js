@@ -1,14 +1,7 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = require('react');
-var React__default = _interopDefault(React);
-var propTypes = require('prop-types');
-var redux = require('redux');
-var createSagaMiddleware = _interopDefault(require('redux-saga'));
+import React, { Component, PureComponent, createContext } from 'react';
+import { func, objectOf, arrayOf, object } from 'prop-types';
+import { applyMiddleware, compose, createStore, bindActionCreators } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
 function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -155,17 +148,17 @@ function (_Component) {
     var allMiddleware = _toConsumableArray(middleware);
 
     if (_this.sagaMiddleware) allMiddleware.push(_this.sagaMiddleware);
-    var enhancers = redux.applyMiddleware.apply(void 0, _toConsumableArray(allMiddleware));
-    var composeEnhancers = (typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(devToolsOptions) : redux.compose;
+    var enhancers = applyMiddleware.apply(void 0, _toConsumableArray(allMiddleware));
+    var composeEnhancers = (typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(devToolsOptions) : compose;
     _this.state = reducer(undefined, {});
-    _this.store = redux.createStore(reducer, devToolsOptions ? composeEnhancers(enhancers) : enhancers);
+    _this.store = createStore(reducer, devToolsOptions ? composeEnhancers(enhancers) : enhancers);
 
     _this.store.subscribe(function () {
       return _this.setState(_this.store.getState());
     });
 
     if (_this.sagaMiddleware) _this.saga = _this.sagaMiddleware.run(saga);
-    _this.boundActions = redux.bindActionCreators(actions, _this.dispatch);
+    _this.boundActions = bindActionCreators(actions, _this.dispatch);
     return _this;
   }
 
@@ -182,15 +175,15 @@ function (_Component) {
   }]);
 
   return LocalReducer;
-}(React.Component);
+}(Component);
 
 LocalReducer.propTypes = {
-  reducer: propTypes.func.isRequired,
-  actions: propTypes.objectOf(propTypes.func.isRequired).isRequired,
-  saga: propTypes.func,
-  middleware: propTypes.arrayOf(propTypes.func.isRequired),
-  children: propTypes.func.isRequired,
-  devToolsOptions: propTypes.object
+  reducer: func.isRequired,
+  actions: objectOf(func.isRequired).isRequired,
+  saga: func,
+  middleware: arrayOf(func.isRequired),
+  children: func.isRequired,
+  devToolsOptions: object
 };
 LocalReducer.defaultProps = {
   middleware: []
@@ -220,13 +213,13 @@ function (_PureComponent) {
   }]);
 
   return _default;
-}(React.PureComponent);
+}(PureComponent);
 
 var Context = (function (props) {
   if (!props.reducer) throw new Error('A reducer must be provided.');
   if (!props.actions) throw new Error('A set of actions must be provided.');
 
-  var _createContext = React.createContext(),
+  var _createContext = createContext(),
       _Provider = _createContext.Provider,
       _Consumer = _createContext.Consumer;
 
@@ -241,8 +234,8 @@ var Context = (function (props) {
   return {
     Provider: function Provider(_ref) {
       var children = _ref.children;
-      return React__default.createElement(LocalReducer, props, function (state, actions, dispatch) {
-        return React__default.createElement(_Provider, {
+      return React.createElement(LocalReducer, props, function (state, actions, dispatch) {
+        return React.createElement(_Provider, {
           value: {
             state: state,
             actions: actions,
@@ -257,11 +250,11 @@ var Context = (function (props) {
           mapState = _ref2$mapState === void 0 ? defaultMapState : _ref2$mapState,
           _ref2$mapActions = _ref2.mapActions,
           mapActions = _ref2$mapActions === void 0 ? defaultMapActions : _ref2$mapActions;
-      return React__default.createElement(_Consumer, null, function (_ref3) {
+      return React.createElement(_Consumer, null, function (_ref3) {
         var state = _ref3.state,
             actions = _ref3.actions,
             dispatch = _ref3.dispatch;
-        return React__default.createElement(_default, {
+        return React.createElement(_default, {
           state: typeof mapState === 'function' ? mapState(state) : defaultMapState(state),
           actions: mapActions(actions, dispatch),
           dispatch: dispatch
@@ -271,6 +264,6 @@ var Context = (function (props) {
   };
 });
 
-exports.default = LocalReducer;
-exports.createContext = Context;
-//# sourceMappingURL=index.js.map
+export default LocalReducer;
+export { Context as createContext };
+//# sourceMappingURL=index.es.js.map

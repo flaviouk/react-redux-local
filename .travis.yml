@@ -18,3 +18,7 @@ script:
 
 after_success:
   - yarn report-coverage
+
+branches:
+  only:
+    - master

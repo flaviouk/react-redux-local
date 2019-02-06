@@ -22,12 +22,12 @@ You can think of `react-redux-local` as a mini, yet powerful version of [react-r
 
 # Table of Contents
 
-* [Installation](#installation)
-* [Usage](#usage)
-* [Api](#api)
-* [Examples](#examples)
-* [Other Solutions](#other-solutions)
-* [LICENSE](#license)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Api](#api)
+- [Examples](#examples)
+- [Other Solutions](#other-solutions)
+- [LICENSE](#license)
 
 # Installation
 
@@ -75,7 +75,7 @@ const { Provider, Consumer } = createContext({
   reducer,
   saga,
   middleware,
-  devToolsOptions
+  devToolsOptions,
 })
 
 const Up = () => (
@@ -150,14 +150,14 @@ const reducer = (state = initialState, action) => {
       return {
         counter: state.counter + 1,
         total: state.total + 1,
-        downs: state.downs
+        downs: state.downs,
       }
 
     case 'COUNT_DOWN':
       return {
         counter: state.counter - 1,
         total: state.total + 1,
-        downs: state.downs + 1
+        downs: state.downs + 1,
       }
 
     default:
@@ -179,7 +179,7 @@ Actions are payloads of information that send data from your application to your
 ```jsx
 const actions = {
   countUp: () => ({ type: 'COUNT_UP' }),
-  countDown: () => ({ type: 'COUNT_DOWN' })
+  countDown: () => ({ type: 'COUNT_DOWN' }),
 }
 ```
 
@@ -286,7 +286,7 @@ dispatch({ type: 'VERY_CUSTOM_ACTION' })
 
 # Examples
 
-* [counter-example](https://codesandbox.io/s/oj14r3qvn6?module=%2Fsrc%2Fcontext.js)
+- [counter-example](https://codesandbox.io/s/oj14r3qvn6?module=%2Fsrc%2Fcontext.js)
 
 # Other Solutions
 
