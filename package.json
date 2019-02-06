@@ -14,6 +14,8 @@
     "npm": ">=5"
   },
   "scripts": {
+    "coverage": "yarn test --coverage",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
@@ -57,6 +59,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^9.0.0",
+    "codecov": "3.0.0",
     "cross-env": "^5.2.0",
     "enzyme": "3.8.0",
     "enzyme-adapter-react-16": "1.9.1",
