@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React from 'react'
 
 import LocalReducer from './LocalReducer'
 import Prevent from './Prevent'
@@ -6,7 +6,7 @@ import Prevent from './Prevent'
 export default props => {
   if (!props.reducer) throw new Error('A reducer must be provided.')
   if (!props.actions) throw new Error('A set of actions must be provided.')
-  const Context = createContext()
+  const Context = React.createContext()
 
   const defaultMap = () => undefined
 
@@ -38,8 +38,29 @@ export default props => {
     </Context.Consumer>
   )
 
+  const useDispatch = () => {
+    const { dispatch } = React.useContext(Context)
+
+    return dispatch
+  }
+
+  const useState = (mapState = defaultMap) => {
+    const { state } = React.useContext(Context)
+
+    return mapState(state)
+  }
+
+  const useActions = (mapActions = defaultMap) => {
+    const { actions } = React.useContext(Context)
+
+    return mapActions(actions)
+  }
+
   return {
     Provider,
     Consumer,
+    useDispatch,
+    useState,
+    useActions,
   }
 }

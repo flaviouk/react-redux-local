@@ -6,7 +6,6 @@ import resolve from 'rollup-plugin-node-resolve'
 import pkg from './package.json'
 
 export default {
-  name: 'react-redux-local',
   input: 'src/index.js',
   external: ['react', 'prop-types', 'redux', 'redux-saga'],
   output: [
@@ -14,11 +13,13 @@ export default {
       file: pkg.main,
       format: 'cjs',
       sourcemap: true,
+      exports: 'named',
     },
     {
       file: pkg.module,
       format: 'es',
       sourcemap: true,
+      exports: 'named',
     },
   ],
   plugins: [

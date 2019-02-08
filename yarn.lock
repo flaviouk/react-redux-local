@@ -3797,6 +3797,11 @@ eslint-plugin-promise@^4.0.0:
   resolved "https://registry.npmjs.org/eslint-plugin-promise/-/eslint-plugin-promise-4.0.1.tgz#2d074b653f35a23d1ba89d8e976a985117d1c6a2"
   integrity sha512-Si16O0+Hqz1gDHsys6RtFRrW7cCTB6P7p3OJmKp3Y3dxpQE2qwOA7d3xnV+0mBmrPoi0RBnxlCKvqu70te6wjg==
 
+eslint-plugin-react-hooks@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.0.1.tgz#76b6fb4edafab02eab0090078977687157605dd9"
+  integrity sha512-yNhvY7EFBp0mq0Bt8BHoS57GwJ4e1qSYdvDFSfPnjmiSmyGUfQFQGcQs4K0JQFDGopWkURWq58psbUJIhWZ2Kg==
+
 eslint-plugin-react@7.11.1:
   version "7.11.1"
   resolved "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.11.1.tgz#c01a7af6f17519457d6116aa94fc6d2ccad5443c"
@@ -9039,6 +9044,11 @@ redux-saga@0.16.0:
   version "0.16.0"
   resolved "https://registry.npmjs.org/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"
   integrity sha1-CiMdsKFIkwHdmA9vL4jYztQY9yQ=
+
+redux-thunk@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+  integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
 redux@4.0.1:
   version "4.0.1"

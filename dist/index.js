@@ -225,52 +225,78 @@ function (_PureComponent) {
 var Context = (function (props) {
   if (!props.reducer) throw new Error('A reducer must be provided.');
   if (!props.actions) throw new Error('A set of actions must be provided.');
+  var Context = React__default.createContext();
 
-  var _createContext = React.createContext(),
-      _Provider = _createContext.Provider,
-      _Consumer = _createContext.Consumer;
-
-  var defaultMapState = function defaultMapState() {
+  var defaultMap = function defaultMap() {
     return undefined;
   };
 
-  var defaultMapActions = function defaultMapActions() {
-    return undefined;
+  var Provider = function Provider(_ref) {
+    var children = _ref.children;
+    return React__default.createElement(LocalReducer, props, function (state, actions, dispatch) {
+      return React__default.createElement(Context.Provider, {
+        value: {
+          state: state,
+          actions: actions,
+          dispatch: dispatch
+        }
+      }, children);
+    });
+  };
+
+  var Consumer = function Consumer(_ref2) {
+    var children = _ref2.children,
+        _ref2$mapState = _ref2.mapState,
+        mapState = _ref2$mapState === void 0 ? defaultMap : _ref2$mapState,
+        _ref2$mapActions = _ref2.mapActions,
+        mapActions = _ref2$mapActions === void 0 ? defaultMap : _ref2$mapActions;
+    return React__default.createElement(Context.Consumer, null, function (_ref3) {
+      var state = _ref3.state,
+          actions = _ref3.actions,
+          dispatch = _ref3.dispatch;
+      return React__default.createElement(_default, {
+        state: mapState(state),
+        actions: mapActions(actions, dispatch),
+        dispatch: dispatch
+      }, children);
+    });
+  };
+
+  var useDispatch = function useDispatch() {
+    var _React$useContext = React__default.useContext(Context),
+        dispatch = _React$useContext.dispatch;
+
+    return dispatch;
+  };
+
+  var useState = function useState() {
+    var mapState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultMap;
+
+    var _React$useContext2 = React__default.useContext(Context),
+        state = _React$useContext2.state;
+
+    return mapState(state);
+  };
+
+  var useActions = function useActions() {
+    var mapActions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultMap;
+
+    var _React$useContext3 = React__default.useContext(Context),
+        actions = _React$useContext3.actions;
+
+    return mapActions(actions);
   };
 
   return {
-    Provider: function Provider(_ref) {
-      var children = _ref.children;
-      return React__default.createElement(LocalReducer, props, function (state, actions, dispatch) {
-        return React__default.createElement(_Provider, {
-          value: {
-            state: state,
-            actions: actions,
-            dispatch: dispatch
-          }
-        }, children);
-      });
-    },
-    Consumer: function Consumer(_ref2) {
-      var children = _ref2.children,
-          _ref2$mapState = _ref2.mapState,
-          mapState = _ref2$mapState === void 0 ? defaultMapState : _ref2$mapState,
-          _ref2$mapActions = _ref2.mapActions,
-          mapActions = _ref2$mapActions === void 0 ? defaultMapActions : _ref2$mapActions;
-      return React__default.createElement(_Consumer, null, function (_ref3) {
-        var state = _ref3.state,
-            actions = _ref3.actions,
-            dispatch = _ref3.dispatch;
-        return React__default.createElement(_default, {
-          state: typeof mapState === 'function' ? mapState(state) : defaultMapState(state),
-          actions: mapActions(actions, dispatch),
-          dispatch: dispatch
-        }, children);
-      });
-    }
+    Provider: Provider,
+    Consumer: Consumer,
+    useDispatch: useDispatch,
+    useState: useState,
+    useActions: useActions
   };
 });
 
 exports.default = LocalReducer;
+exports.LocalReducer = LocalReducer;
 exports.createContext = Context;
 //# sourceMappingURL=index.js.map

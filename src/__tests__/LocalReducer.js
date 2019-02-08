@@ -2,14 +2,10 @@ import React from 'react'
 import { takeEvery } from 'redux-saga'
 import { render, cleanup, fireEvent } from 'react-testing-library'
 
-import LocalReducer from '../..'
-import { reducer, actions, types } from '../duck'
+import { LocalReducer } from '../..'
+import { reducer, actions, types } from '../__mocks__/local'
 
 afterEach(cleanup)
-
-it('should be defined', () => {
-  expect(LocalReducer).toBeDefined()
-})
 
 const sharedProps = {
   reducer: reducer,

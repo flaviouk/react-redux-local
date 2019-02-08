@@ -6,7 +6,7 @@
     "plugin:jest/recommended",
     "prettier"
   ],
-  "plugins": ["react", "jest", "prettier"],
+  "plugins": ["react", "jest", "prettier", "react-hooks"],
   "env": {
     "es6": true,
     "jest/globals": true
@@ -20,6 +20,7 @@
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    "react-hooks/rules-of-hooks": "error"
   }
 }

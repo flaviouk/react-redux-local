@@ -43,7 +43,7 @@ yarn add react-redux-local
 ## LocalReducer
 
 ```jsx
-import LocalReducer from 'react-redux-local'
+import { LocalReducer } from 'react-redux-local'
 
 // https://github.com/erikras/ducks-modular-redux
 import { actions, reducer, saga, middleware, devToolsOptions } from './duck'
